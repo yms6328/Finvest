@@ -1,4 +1,4 @@
-﻿빌드 시작: 4/4/2012 12:23:19 AM
+﻿빌드 시작: 4/4/2012 1:29:04 AM
      1>2 노드의 "C:\Users\hyeyeong\Finvest\Finvest_API\Finvest_API\Finvest_API.vcxproj" 프로젝트(build 대상)입니다.
      1>InitializeBuildStatus:
          "AlwaysCreate"이(가) 지정되었기 때문에 "Debug\Finvest_API.unsuccessfulbuild"을(를) 만들고 있습니다.
@@ -24,4 +24,4 @@
 
 빌드했습니다.
 
-경과 시간: 00:00:01.03
+경과 시간: 00:00:01.73

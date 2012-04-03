@@ -37,13 +37,14 @@ int main()
 void select_menu(int menunum)
 {
     string name;
+    string code;
     switch(menunum)
     {
         case 1:
             cout << "1. Get close with stock code" << endl;
-            cout << "enter the name: ";
-            cin >> name;
-            db_help.GetStockCode(name);
+            cout << "enter the stock code: ";
+            cin >> code;
+            db_help.GetStockName(code);
         break;
     }
 }
