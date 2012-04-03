@@ -1,0 +1,6 @@
+1. Fork
+2. git clone
+3. add upstream - git remote add --track master upstream git@github:Hyeyeong/Finvest.git
+4. git pull upstream master
+5. git merge upstream/master
+6. send pull request
