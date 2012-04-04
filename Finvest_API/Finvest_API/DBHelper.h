@@ -10,5 +10,6 @@ class DBHelper
         void GetClose(const std::string& stock_code);
         void GetStockCode(const std::string& stock_name);
         void GetStockName(const std::string& stock_code);
+        void ExecuteQuery(const std::string& query);
 };
 #endif
