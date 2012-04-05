@@ -131,3 +131,7 @@ char* DBHelper::AnsiToUtf8(const char* pszCode)
 
 	return pszUTFCode;
 }
+
+/*
+    add verbose comment for merge test
+*/
