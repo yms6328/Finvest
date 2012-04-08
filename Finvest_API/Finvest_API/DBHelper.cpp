@@ -90,7 +90,7 @@ void DBHelper::ExecuteQuery(const std::string& query)
 
 /*
     Convert UTF-8 to ANSI
-*/
+
 std::string UTF8ToANSI(char *pszCode)
 {
     BSTR    bstrWide;
@@ -108,13 +108,13 @@ std::string UTF8ToANSI(char *pszCode)
     WideCharToMultiByte(CP_ACP, 0, bstrWide, -1, pszAnsi, nLength, NULL, NULL);
     SysFreeString(bstrWide);
 
-    convertedStr = gcnew string(pszCode);
+    convertedStr = new string(pszCode);
     return convertedStr;
 }
 
 /*
     convert ANSI to UTF-8
-*/
+
 char* DBHelper::AnsiToUtf8(const char* pszCode)
 {
 	int		nLength, nLength2;
