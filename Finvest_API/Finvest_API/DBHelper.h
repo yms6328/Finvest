@@ -1,17 +1,15 @@
 #ifndef DBHELPER_H
 #define DBHELPER_H
 #include <string>
+#include "QueryManager.h"
 
 class DBHelper
 {
     public:
+        QueryManager m_q_manager;
+        DBHelper();
         void Connect();
-        void GetClose();
-        void GetClose(const std::string& stock_code);
         void GetStockCode(const std::string& stock_name);
         void GetStockName(const std::string& stock_code);
-        void ExecuteQuery(const std::string& query);
-
-        char* AnsiToUtf8(const char* pszCode);
 };
 #endif

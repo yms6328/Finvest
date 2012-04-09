@@ -14,7 +14,6 @@ int main()
 
     cout << "Database API Test" << endl;
     cout << LINE << endl << "Connecting Database" << endl;
-    
     db_help.Connect();
     cout << LINE << endl;
 
