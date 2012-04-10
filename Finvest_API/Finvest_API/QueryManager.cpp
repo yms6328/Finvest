@@ -35,13 +35,13 @@ void QueryManager::DB_Connect()
 
 std::string QueryManager::ExecuteGetCodeQuery(const std::string& name)
 {
-    std::string query = "Select S_CODE from dbo_st_code where S_NAME='" + name + "';";
+    std::string query = "Select S_CODE from dbo_st_code where S_NAME='" + name;
     return execute(query);
 }
 
 std::string QueryManager::ExecuteGetNameQuery(const std::string& code)
 {
-    std::string query = "Select S_NAME from dbo_st_code where S_CODE=" + code + ";";
+    std::string query = "Select S_NAME from dbo_st_code where S_CODE=" + code;
     return execute(query);
 }
 
@@ -76,11 +76,7 @@ std::string QueryManager::execute(const std::string& full_query)
 
     while((m_row = mysql_fetch_row(m_result)) != NULL)
     {
-        for(int count = 0; count < num_of_row; count++)
-        {
-            ss << m_row[0];
-            std::cout << "row" << count << " " << m_row[count] << std::endl;
-        }
+        ss << m_row[0];
     }
 
     return ss.str();

@@ -28,7 +28,7 @@ void DBHelper::GetStockName(const std::string& stock_code)
 
 int DBHelper::GetClose(const std::string& stock_name, const std::string& stock_date)
 {
-    std::string query = "where S_CODE='" + DBHelper::GetStockCode(stock_name) + "' AND S_DATE='" + stock_date + "';";
+    std::string query = "where S_CODE='" + DBHelper::GetStockCode(stock_name) + "' AND S_DATE='" + stock_date;
     return m_q_manager.ExecuteGetCloseQuery(query);
 }
 
