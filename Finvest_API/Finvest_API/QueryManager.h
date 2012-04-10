@@ -15,8 +15,10 @@ class QueryManager
         void DB_Connect();
         std::string ExecuteGetNameQuery(const std::string& code);
         std::string ExecuteGetCodeQuery(const std::string& name);
+        int ExecuteGetCloseQuery(const std::string& query);
+        void test();
 
     private:
-        char* execute(const std::string& full_query);
+        std::string execute(const std::string& full_query);
 };
 #endif

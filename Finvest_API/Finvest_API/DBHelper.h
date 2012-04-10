@@ -9,7 +9,11 @@ class DBHelper
         QueryManager m_q_manager;
         DBHelper();
         void Connect();
-        void GetStockCode(const std::string& stock_name);
+
+        std::string GetStockCode(const std::string& stock_name);
         void GetStockName(const std::string& stock_code);
+        void test();
+
+        int GetClose(const std::string& stock_name, const std::string& stock_date);
 };
 #endif

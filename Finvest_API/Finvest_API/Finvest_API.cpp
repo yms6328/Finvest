@@ -24,7 +24,7 @@ int main()
         cout << "1. Get stock name" << endl;
         cout << "2. Get stock code" << endl;
         cout << "3. Get close with date" << endl;
-        cout << "4. Update field" << endl;
+        cout << "4. Test" << endl;
         cout << "5. Edit field" << endl;
         cout << "6. Exit" << endl;
         cin >> menu_num;
@@ -38,6 +38,8 @@ void select_menu(int menunum)
 {
     string name;
     string code;
+    string date;
+
     switch(menunum)
     {
         case 1:
@@ -52,7 +54,17 @@ void select_menu(int menunum)
             cin >> name;
             db_help.GetStockCode(name);
         break;
+        case 3:
+            cout << "3. Get Close By Name" << endl;
+            cout << "enter the stock name: ";
+            cin >> name;
+            cout << "enter the stock date(yyyymmdd): ";
+            cin >> date;
+
+            cout << db_help.GetClose(name, date) << endl;
+        break;
+        case 4:
+            db_help.test();
+        break;
     }
 }
-
-// add verbose comments

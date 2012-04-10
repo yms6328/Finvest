@@ -36,24 +36,52 @@ void QueryManager::DB_Connect()
 std::string QueryManager::ExecuteGetCodeQuery(const std::string& name)
 {
     std::string query = "Select S_CODE from dbo_st_code where S_NAME='" + name + "';";
-    std::stringstream ss;
-    ss << execute(query);
-    return ss.str();
+    return execute(query);
 }
 
-char* QueryManager::execute(const std::string& full_query)
+std::string QueryManager::ExecuteGetNameQuery(const std::string& code)
 {
-    char* return_result = "No results!!";
+    std::string query = "Select S_NAME from dbo_st_code where S_CODE=" + code + ";";
+    return execute(query);
+}
+
+int QueryManager::ExecuteGetCloseQuery(const std::string& query)
+{
+    char result_array[3];
+    std::string full_query = "Select S_CLOSE from dbo_st_dldata " + query;
+    return atoi(execute(full_query).c_str());
+}
+
+void QueryManager::test()
+{
+    std::string query = "select S_CLOSE from dbo_st_dldata limit 3";
+    execute(query);
+}
+
+std::string QueryManager::execute(const std::string& full_query)
+{
+    std::stringstream ss;
+
     int query_state = mysql_query(m_connection, full_query.c_str());
     if (query_state != 0)
     {
         std::cout << mysql_error(m_connection) << std::endl;
     }
     m_result = mysql_store_result(m_connection);
+    int fields = mysql_num_fields(m_result);
+    int num_of_row = mysql_num_rows(m_result);
+
+    std::cout << "num of row: " << num_of_row << std::endl;
+    std::cout << "num of field: " << fields << std::endl;
+
     while((m_row = mysql_fetch_row(m_result)) != NULL)
     {
-        return_result = m_row[0];
+        for(int count = 0; count < num_of_row; count++)
+        {
+            ss << m_row[0];
+            std::cout << "row" << count << " " << m_row[count] << std::endl;
+        }
     }
 
-    return return_result;
+    return ss.str();
 }
