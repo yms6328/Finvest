@@ -1,3 +1,10 @@
+/*
+    DBHelper.cpp
+    * Stock Database API
+    * author: Finvest
+    * jag9123@gmail.com
+*/
+
 #include <iostream>
 #include <string.h>
 #include <sstream>
@@ -6,6 +13,8 @@
 
 using namespace std;
 
+const int TODAY = 20060302;
+
 DBHelper::DBHelper()
 {
     DBHelper::DBConnect();
@@ -13,7 +22,7 @@ DBHelper::DBHelper()
 
 DBHelper::~DBHelper()
 {
-    ;
+    sql_manager.~SQLManager();
 }
 
 void DBHelper::DBConnect()
@@ -28,7 +37,17 @@ void DBHelper::DBConnect()
     }
 }
 
-int DBHelper::GetStockCode(char* stock_name)
+void DBHelper::SetStock(const string& stock_name)
 {
-    return sql_manager.GetStockCode(stock_name);
+    sql_manager.SetTestStock(stock_name);
+}
+
+string DBHelper::GetStockCode()
+{
+    return sql_manager.ExecuteGetStockCode();
+}
+
+int DBHelper::GetClose()
+{
+    return sql_manager.ExecuteGetClose(TODAY);
 }

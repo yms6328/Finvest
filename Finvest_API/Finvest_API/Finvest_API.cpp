@@ -1,11 +1,20 @@
+/*
+    Finvest_API.cpp
+    * API test program
+    * author: Finvest
+    * jag9123@gmail.com
+*/
+
+
 #include <iostream>
 #include "DBHelper.h"
 
-#define LINE "--------------------------------------"
+#define LINE "--------------------------------------------------"
 
 using namespace std;
 
-void select_menu(int menunum);
+void SelectMenu(int menunum);
+void SetMainStock();
 DBHelper db_helper;
 
 int main()
@@ -15,42 +24,62 @@ int main()
     cout << LINE << endl;
     cout << "Database API Test Program" << endl;
     cout << LINE << endl;
+    SetMainStock();
 
     while(menu_num != 6) 
     {
         cout << "Select Menu \n";
-        cout << "1. Get stock name" << endl;
-        cout << "2. Get stock code" << endl;
-        cout << "3. Get close with date" << endl;
-        cout << "4. Test" << endl;
-        cout << "5. Edit field" << endl;
+        cout << "1. Change Stock" << endl;
+        cout << "2. Get Today Close" << endl;
         cout << "6. Exit" << endl;
         cin >> menu_num;
         cout << LINE << endl;
-        select_menu(menu_num);
+        SelectMenu(menu_num);
+        cout << LINE << endl;
     }
     return 0;
 }
 
-void select_menu(int menunum)
+void SelectMenu(int menunum)
 {
-    char* name;
-    char* code;
+    string name;
+    string code;
+    int close;
 
     switch(menunum)
     {
         case 1:
-            cout << "1. Get stock name" << endl;
-            cout << "enter the stock code: ";
-            cin >> code;
-            db_helper.GetStockName(code);
+            cout << "1. Change Stock" << endl;
+            SetMainStock();
         break;
 
         case 2:
-            cout << "2. Get stock code" << endl;
-            cout << "enter the stock code: ";
-            cin >> name;
-            db_helper.GetStockCode(name);
+            cout << "2. Get Today Close" << endl;
+            cout << "executing...";
+            close = db_helper.GetClose();
+            if(close != 1)
+            {
+                cout << "\r" << "Close:\t" << close << endl;
+            }
+            else
+            {
+                cout << "\rThere are no result." << endl;
+            }
+        break;
+
+        case 6:
+            cout << "Good Bye" << endl;
+            db_helper.~DBHelper();
         break;
     }
+}
+
+void SetMainStock()
+{
+    string name;
+
+    cout << "enter the stock name: ";
+    cin >> name;
+    db_helper.SetStock(name);
+    cout << "You choose the " << name << "(" << db_helper.GetStockCode() << ")" << endl << LINE << endl;
 }
