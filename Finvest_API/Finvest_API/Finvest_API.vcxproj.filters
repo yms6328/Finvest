@@ -13,23 +13,47 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="소스 파일\API">
+      <UniqueIdentifier>{59018a77-68e3-4d15-93cf-733638f3c07b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Manager">
+      <UniqueIdentifier>{a7ac289a-686d-47e9-86d7-2c9f5e68f775}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Index">
+      <UniqueIdentifier>{17494670-2f0b-4fc4-b4a3-2dfe7d93bbac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Fomular">
+      <UniqueIdentifier>{f4e78bd1-72bc-4713-b018-3c50ad4e9e51}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Finvest_API.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="DBHelper.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\API</Filter>
     </ClCompile>
-    <ClCompile Include="QueryManager.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="SQLManager.cpp">
+      <Filter>소스 파일\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="StockIndex.cpp">
+      <Filter>소스 파일\Index</Filter>
+    </ClCompile>
+    <ClCompile Include="IndexFomular.cpp">
+      <Filter>소스 파일\Fomular</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DBHelper.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="QueryManager.h">
+    <ClInclude Include="SQLManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="StockIndex.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="IndexFomular.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

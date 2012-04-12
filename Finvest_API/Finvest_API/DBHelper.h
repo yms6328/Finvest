@@ -1,19 +1,23 @@
 #ifndef DBHELPER_H
 #define DBHELPER_H
 #include <string>
-#include "QueryManager.h"
+#include "SQLManager.h"
 
 class DBHelper
 {
     public:
-        QueryManager m_q_manager;
-        DBHelper();
-        void Connect();
+        SQLManager sql_manager;
 
-        int GetStockCode(const std::string& stock_name);
+        DBHelper();
+        ~DBHelper();        
+
+        void DBConnect();
+
+        int GetStockCode(char* stock_name);
         std::string GetStockName(const std::string& stock_code);
 
-
-        int GetClose(const std::string& stock_name);
+        int GetTodayClose(const std::string& stock_name); // 오늘 날짜의 data 가져옴
+        int GetPrevClose(const std::string& stock_name, int day); // n일 전의 data
+        int* GetPeriodClose(const std::string& stock_name, int period); // n일간의 data
 };
 #endif

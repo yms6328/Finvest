@@ -86,11 +86,15 @@
   <ItemGroup>
     <ClCompile Include="DBHelper.cpp" />
     <ClCompile Include="Finvest_API.cpp" />
-    <ClCompile Include="QueryManager.cpp" />
+    <ClCompile Include="IndexFomular.cpp" />
+    <ClCompile Include="SQLManager.cpp" />
+    <ClCompile Include="StockIndex.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DBHelper.h" />
-    <ClInclude Include="QueryManager.h" />
+    <ClInclude Include="IndexFomular.h" />
+    <ClInclude Include="SQLManager.h" />
+    <ClInclude Include="StockIndex.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -12,14 +12,12 @@ int main()
 {
     int menu_num = 0;
 
-    cout << "Database API Test" << endl;
-    cout << LINE << endl << "Connecting Database" << endl;
-
+    cout << LINE << endl;
+    cout << "Database API Test Program" << endl;
     cout << LINE << endl;
 
     while(menu_num != 6) 
     {
-        cout << LINE << endl;
         cout << "Select Menu \n";
         cout << "1. Get stock name" << endl;
         cout << "2. Get stock code" << endl;
@@ -36,9 +34,8 @@ int main()
 
 void select_menu(int menunum)
 {
-    string name;
-    string code;
-    string date;
+    char* name;
+    char* code;
 
     switch(menunum)
     {
@@ -46,21 +43,14 @@ void select_menu(int menunum)
             cout << "1. Get stock name" << endl;
             cout << "enter the stock code: ";
             cin >> code;
+            db_helper.GetStockName(code);
         break;
+
         case 2:
             cout << "2. Get stock code" << endl;
             cout << "enter the stock code: ";
             cin >> name;
-        break;
-        case 3:
-            cout << "3. Get Close By Name" << endl;
-            cout << "enter the stock name: ";
-            cin >> name;
-            cout << "enter the stock date(yyyymmdd): ";
-            cin >> date;
-
-        break;
-        case 4:
+            db_helper.GetStockCode(name);
         break;
     }
 }
