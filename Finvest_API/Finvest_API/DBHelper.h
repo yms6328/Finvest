@@ -10,10 +10,10 @@ class DBHelper
         DBHelper();
         void Connect();
 
-        std::string GetStockCode(const std::string& stock_name);
-        void GetStockName(const std::string& stock_code);
-        void test();
+        int GetStockCode(const std::string& stock_name);
+        std::string GetStockName(const std::string& stock_code);
 
-        int GetClose(const std::string& stock_name, const std::string& stock_date);
+
+        int GetClose(const std::string& stock_name);
 };
 #endif

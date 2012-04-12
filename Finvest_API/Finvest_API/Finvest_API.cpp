@@ -6,7 +6,7 @@
 using namespace std;
 
 void select_menu(int menunum);
-DBHelper db_help;
+DBHelper db_helper;
 
 int main()
 {
@@ -14,7 +14,7 @@ int main()
 
     cout << "Database API Test" << endl;
     cout << LINE << endl << "Connecting Database" << endl;
-    db_help.Connect();
+
     cout << LINE << endl;
 
     while(menu_num != 6) 
@@ -46,13 +46,11 @@ void select_menu(int menunum)
             cout << "1. Get stock name" << endl;
             cout << "enter the stock code: ";
             cin >> code;
-            db_help.GetStockName(code);
         break;
         case 2:
             cout << "2. Get stock code" << endl;
             cout << "enter the stock code: ";
             cin >> name;
-            db_help.GetStockCode(name);
         break;
         case 3:
             cout << "3. Get Close By Name" << endl;
@@ -61,10 +59,8 @@ void select_menu(int menunum)
             cout << "enter the stock date(yyyymmdd): ";
             cin >> date;
 
-            cout << db_help.GetClose(name, date) << endl;
         break;
         case 4:
-            db_help.test();
         break;
     }
 }
