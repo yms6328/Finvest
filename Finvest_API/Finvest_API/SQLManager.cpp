@@ -10,6 +10,7 @@
 #include <mysql.h>
 #include <string>
 #include <sstream>
+#include <time.h>
 #include "SQLManager.h"
 
 #pragma comment(lib, "libmysql.lib")
@@ -24,6 +25,7 @@ using namespace std;
 const string T_DL("dbo_st_dldata");
 const string T_CODE("dbo_st_code");
 const string T_TB("dbo_st_tbdata");
+const int TODAY = 20060502;
 
 SQLManager::SQLManager()
 {
@@ -32,6 +34,8 @@ SQLManager::SQLManager()
     m_field_num = 0;
     m_is_connect = false;
     m_exist_result = false;
+
+    today = InitDate();
 
     mysql_init(&m_connect);
 }
@@ -84,10 +88,21 @@ string SQLManager::ExecuteGetStockCode()
     return m_stock_code;
 }
 
-int SQLManager::ExecuteGetClose(int date)
+int SQLManager::ExecuteGetTodayClose()
 {
-    string query = "SELECT S_CLOSE FROM " + T_DL + 
-                    " WHERE S_CODE='" + m_stock_code + "' AND S_DATE='" + ConvertIntToStr(date) + "'";
+    return ExecuteGetClose(DateFormatting(today));
+}
+
+int SQLManager::ExecuteGetBeforeClose(int day)
+{
+    // calculating date
+    return ExecuteGetClose(DateFormatting(today));
+}
+
+int SQLManager::ExecuteGetClose(const string& date)
+{
+    string query = "SELECT S_CLOSE FROM " + T_DL + " WHERE S_CODE='" + m_stock_code + "' AND S_DATE='" + date + "'";
+    cout << query << endl;
     char** result = ExecuteQuery(query);
 
     if(result == NULL)
@@ -130,4 +145,21 @@ char** SQLManager::ExecuteQuery(const string& full_query)
     }
 
     return m_row;
+}
+
+tm* SQLManager::InitDate()
+{
+    tm* init_date = new tm;
+    // temp date
+    init_date->tm_year = 1987 - 1900;
+    init_date->tm_mon = 10; // tm_mon = month - 1 = 9;
+    init_date->tm_mday = 4;
+
+    return init_date;
+}
+
+char* SQLManager::DateFormatting(tm* tm_date)
+{
+    char buffer[50];
+    strftime(buffer, 50, "%Y%m%d", tm_date);
 }

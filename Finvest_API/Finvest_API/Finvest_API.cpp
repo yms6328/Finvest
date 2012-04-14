@@ -28,14 +28,15 @@ int main()
 
     while(menu_num != 6) 
     {
+        cout << LINE << endl;
         cout << "Select Menu \n";
         cout << "1. Change Stock" << endl;
         cout << "2. Get Today Close" << endl;
+        cout << "3. Get Previous Close" << endl;
         cout << "6. Exit" << endl;
         cin >> menu_num;
         cout << LINE << endl;
         SelectMenu(menu_num);
-        cout << LINE << endl;
     }
     return 0;
 }
@@ -45,6 +46,7 @@ void SelectMenu(int menunum)
     string name;
     string code;
     int close;
+    int number;
 
     switch(menunum)
     {
@@ -67,6 +69,13 @@ void SelectMenu(int menunum)
             }
         break;
 
+        case 3:
+            cout << "3. Get Before Cloase" << endl;
+            cout << "enter the number: ";
+            cin >> number;
+            cout << db_helper.GetPrevClose(number) << endl;
+        break;
+
         case 6:
             cout << "Good Bye" << endl;
             db_helper.~DBHelper();
@@ -81,5 +90,5 @@ void SetMainStock()
     cout << "enter the stock name: ";
     cin >> name;
     db_helper.SetStock(name);
-    cout << "You choose the " << name << "(" << db_helper.GetStockCode() << ")" << endl << LINE << endl;
+    cout << "You choose the " << name << "(" << db_helper.GetStockCode() << ")" << endl;
 }

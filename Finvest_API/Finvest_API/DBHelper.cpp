@@ -13,8 +13,6 @@
 
 using namespace std;
 
-const int TODAY = 20060302;
-
 DBHelper::DBHelper()
 {
     DBHelper::DBConnect();
@@ -49,5 +47,10 @@ string DBHelper::GetStockCode()
 
 int DBHelper::GetClose()
 {
-    return sql_manager.ExecuteGetClose(TODAY);
+    return sql_manager.ExecuteGetTodayClose();
+}
+
+int DBHelper::GetPrevClose(int day)
+{
+    return sql_manager.ExecuteGetBeforeClose(day);
 }

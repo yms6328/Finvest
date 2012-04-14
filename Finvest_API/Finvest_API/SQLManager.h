@@ -2,6 +2,7 @@
 #define SQLMANAGER_H
 #include <mysql.h>
 #include <string.h>
+#include <time.h>
 
 class SQLManager
 {    
@@ -17,7 +18,8 @@ class SQLManager
         std::string ExecuteGetStockCode();
         std::string ExecuteGetStockName(const std::string& stock_code);
         
-        int ExecuteGetClose(int date);
+        int ExecuteGetTodayClose();
+        int ExecuteGetBeforeClose(int day);
 
     private:
         MYSQL m_connect;
@@ -32,8 +34,15 @@ class SQLManager
         int m_row_num;
         int m_field_num;
 
+        time_t date;
+        tm* today;
+        tm* before;
+
+        int ExecuteGetClose(const std::string& date);
         char** ExecuteQuery(const std::string& full_query);
         std::string ConvertIntToStr(int number);
+        tm* InitDate();
+        char* DateFormatting(tm * tm_date);
 };
 
 #endif
