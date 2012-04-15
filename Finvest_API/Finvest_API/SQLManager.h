@@ -20,10 +20,13 @@ class SQLManager
         
         int GetTodayClose();
         int GetBeforeClose(int day);
+
         int GetTodayOpen();
         int GetBeforeOpen(int day);
+
         int GetTodayHigh();
         int GetBeforeHigh(int day);
+
         int GetTodayLow();
         int GetBeforeLow(int day);
 

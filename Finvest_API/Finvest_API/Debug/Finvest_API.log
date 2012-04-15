@@ -1,34 +1,10 @@
-<<<<<<< HEAD
-﻿빌드 시작: 4/15/2012 6:21:15 PM
-     1>2 노드의 "C:\Users\songguri\Finvest\Finvest_API\Finvest_API\Finvest_API.vcxproj" 프로젝트(build 대상)입니다.
-     1>InitializeBuildStatus:
-         "AlwaysCreate"이(가) 지정되었기 때문에 "Debug\Finvest_API.unsuccessfulbuild"을(를) 만들고 있습니다.
-       ClCompile:
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\MySQL\MySQL Server 5.5\include" /I"C:\Program Files (x86)\MySQL\MySQL Connector C++ 1.1.0\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt DBHelper.cpp Finvest_API.cpp IndexFomular.cpp SQLManager.cpp StockIndex.cpp
-         StockIndex.cpp
-     1>c:\users\songguri\finvest\finvest_api\finvest_api\stockindex.h(4): error C2059: 구문 오류 : ')'
-     1>c:\users\songguri\finvest\finvest_api\finvest_api\stockindex.h(5): error C2143: 구문 오류 : ';'이(가) '{' 앞에 없습니다.
-     1>c:\users\songguri\finvest\finvest_api\finvest_api\stockindex.h(5): error C2447: '{' : 함수 헤더가 없습니다. 이전 스타일의 형식 목록입니까?
-         SQLManager.cpp
-         IndexFomular.cpp
-         Finvest_API.cpp
-         DBHelper.cpp
-         코드를 생성하고 있습니다...
-     1>c:\users\songguri\finvest\finvest_api\finvest_api\finvest_api.cpp(45): warning C4700: 초기화되지 않은 'code' 지역 변수를 사용했습니다.
-     1>c:\users\songguri\finvest\finvest_api\finvest_api\finvest_api.cpp(52): warning C4700: 초기화되지 않은 'name' 지역 변수를 사용했습니다.
-     1>c:\users\songguri\finvest\finvest_api\finvest_api\sqlmanager.cpp(47): error C4716: 'SQLManager::GetStockCode' : 값을 반환해야 합니다.
-     1>"C:\Users\songguri\Finvest\Finvest_API\Finvest_API\Finvest_API.vcxproj" 프로젝트를 빌드했습니다(build 대상). - 실패
-=======
-﻿빌드 시작: 4/15/2012 3:39:03 PM
+﻿빌드 시작: 4/15/2012 7:25:11 PM
      1>2 노드의 "C:\Users\hyeyeong\Finvest\Finvest_API\Finvest_API\Finvest_API.vcxproj" 프로젝트(build 대상)입니다.
      1>InitializeBuildStatus:
-         "AlwaysCreate"이(가) 지정되었기 때문에 "Debug\Finvest_API.unsuccessfulbuild"을(를) 만들고 있습니다.
+         "Debug\Finvest_API.unsuccessfulbuild"에 연결(touching)하고 있습니다.
        ClCompile:
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\MySQL\MySQL Server 5.5\include" /I"C:\Program Files (x86)\MySQL\MySQL Connector C++ 1.1.0\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Finvest_API.cpp SQLManager.cpp
-         SQLManager.cpp
-     1>c:\users\hyeyeong\finvest\finvest_api\finvest_api\sqlmanager.cpp(158): warning C4244: '=' : 'my_ulonglong'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-         Finvest_API.cpp
-         코드를 생성하고 있습니다...
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\MySQL\MySQL Server 5.5\include" /I"C:\Program Files (x86)\MySQL\MySQL Connector C++ 1.1.0\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt IndexFomular.cpp
+         IndexFomular.cpp
        ManifestResourceCompile:
          모든 출력이 최신 상태입니다.
        Link:
@@ -48,12 +24,7 @@
          "Debug\Finvest_API.unsuccessfulbuild" 파일을 삭제하고 있습니다.
          "Debug\Finvest_API.lastbuildstate"에 연결(touching)하고 있습니다.
      1>"C:\Users\hyeyeong\Finvest\Finvest_API\Finvest_API\Finvest_API.vcxproj" 프로젝트를 빌드했습니다(build 대상).
->>>>>>> caa85b8e9c6896ccd2ff3f46a60814ecc1b1da44
 
-빌드하지 못했습니다.
+빌드했습니다.
 
-<<<<<<< HEAD
-경과 시간: 00:00:12.97
-=======
-경과 시간: 00:00:03.22
->>>>>>> caa85b8e9c6896ccd2ff3f46a60814ecc1b1da44
+경과 시간: 00:00:01.55
