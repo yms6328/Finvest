@@ -33,6 +33,7 @@ int main()
         cout << "1. Change Stock" << endl;
         cout << "2. Get Today Close" << endl;
         cout << "3. Get Previous Close" << endl;
+        cout << "4. Get Today Open" << endl;
         cout << "6. Exit" << endl;
         cin >> menu_num;
         cout << LINE << endl;
@@ -45,7 +46,7 @@ void SelectMenu(int menunum)
 {
     string name;
     string code;
-    int close;
+    int data;
     int number;
 
     switch(menunum)
@@ -58,10 +59,10 @@ void SelectMenu(int menunum)
         case 2:
             cout << "2. Get Today Close" << endl;
             cout << "executing...";
-            close = db_helper.GetClose();
-            if(close != 1)
+            data = db_helper.GetClose();
+            if(data != 1)
             {
-                cout << "\r" << "Close:\t" << close << endl;
+                cout << "\r" << "Close:\t" << data << endl;
             }
             else
             {
@@ -70,10 +71,24 @@ void SelectMenu(int menunum)
         break;
 
         case 3:
-            cout << "3. Get Before Cloase" << endl;
+            cout << "3. Get Before Close" << endl;
             cout << "enter the number: ";
             cin >> number;
             cout << db_helper.GetPrevClose(number) << endl;
+        break;
+
+        case 4:
+            cout << "4. Get Today Open" << endl;
+            cout << "executing...";
+            data = db_helper.GetOpen();
+            if(data != 1)
+            {
+                cout << "\r" << "Open:\t" << data << endl;
+            }
+            else
+            {
+                cout << "\rThere are no result." << endl;
+            }
         break;
 
         case 6:

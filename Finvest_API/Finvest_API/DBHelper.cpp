@@ -42,15 +42,20 @@ void DBHelper::SetStock(const string& stock_name)
 
 string DBHelper::GetStockCode()
 {
-    return sql_manager.ExecuteGetStockCode();
+    return sql_manager.GetStockCode();
 }
 
 int DBHelper::GetClose()
 {
-    return sql_manager.ExecuteGetTodayClose();
+    return sql_manager.GetTodayClose();
 }
 
 int DBHelper::GetPrevClose(int day)
 {
-    return sql_manager.ExecuteGetBeforeClose(day);
+    return sql_manager.GetBeforeClose(day);
+}
+
+int DBHelper::GetOpen()
+{
+    return sql_manager.GetTodayOpen();
 }

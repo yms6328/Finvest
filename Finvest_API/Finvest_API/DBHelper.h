@@ -16,8 +16,11 @@ class DBHelper
 
         std::string GetStockCode();
 
-        int GetClose(); // 오늘 날짜의 data 가져옴
-        int GetPrevClose(int day); // n일 전의 data
-        int* GetPeriodClose(); // n일간의 data
+        int GetClose(); // Get close data today
+        int GetPrevClose(int day); // get close data n days before
+        int* GetPeriodClose(); // get close data during n days
+        int GetOpen();
+        int GetPrevOpen(int day);
+        int* GetPeriodOpen();
 };
 #endif

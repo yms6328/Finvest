@@ -15,11 +15,17 @@ class SQLManager
         void SetPrevDate(int nday);
         std::string GetTestStock();
 
-        std::string ExecuteGetStockCode();
-        std::string ExecuteGetStockName(const std::string& stock_code);
+        std::string GetStockCode();
+        std::string GetStockName(const std::string& stock_code);
         
-        int ExecuteGetTodayClose();
-        int ExecuteGetBeforeClose(int day);
+        int GetTodayClose();
+        int GetBeforeClose(int day);
+        int GetTodayOpen();
+        int GetBeforeOpen(int day);
+        int GetTodayHigh();
+        int GetBeforeHigh(int day);
+        int GetTodayLow();
+        int GetBeforeLow(int day);
 
     private:
         MYSQL m_connect;
@@ -35,14 +41,18 @@ class SQLManager
         int m_field_num;
 
         time_t date;
-        tm* today;
-        tm* before;
+        struct tm today;
+        struct tm before;
 
-        int ExecuteGetClose(const std::string& date);
+        int ExecuteGetData(const std::string& field, const std::string& date);
         char** ExecuteQuery(const std::string& full_query);
+
         std::string ConvertIntToStr(int number);
-        tm* InitDate();
-        char* DateFormatting(tm * tm_date);
+
+        tm InitDate();
+
+        std::string DateFormatting(tm* tm_date);
+        std::string GetBeforeDate(int nday);
 };
 
 #endif
