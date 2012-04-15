@@ -1,3 +1,10 @@
+/*
+    DBHelper.cpp
+    * Stock Database API
+    * author: Finvest
+    * jag9123@gmail.com
+*/
+
 #include <iostream>
 #include <string.h>
 #include <sstream>
@@ -13,7 +20,7 @@ DBHelper::DBHelper()
 
 DBHelper::~DBHelper()
 {
-    ;
+    sql_manager.~SQLManager();
 }
 
 void DBHelper::DBConnect()
@@ -28,7 +35,27 @@ void DBHelper::DBConnect()
     }
 }
 
-int DBHelper::GetStockCode(char* stock_name)
+void DBHelper::SetStock(const string& stock_name)
 {
-    return sql_manager.GetStockCode(stock_name);
+    sql_manager.SetTestStock(stock_name);
+}
+
+string DBHelper::GetStockCode()
+{
+    return sql_manager.GetStockCode();
+}
+
+int DBHelper::GetClose()
+{
+    return sql_manager.GetTodayClose();
+}
+
+int DBHelper::GetPrevClose(int day)
+{
+    return sql_manager.GetBeforeClose(day);
+}
+
+int DBHelper::GetOpen()
+{
+    return sql_manager.GetTodayOpen();
 }
