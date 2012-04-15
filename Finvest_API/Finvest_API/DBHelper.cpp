@@ -59,3 +59,28 @@ int DBHelper::GetOpen()
 {
     return sql_manager.GetTodayOpen();
 }
+
+int DBHelper::GetPrevOpen(int day)
+{
+    return sql_manager.GetBeforeOpen(day);
+}
+
+int DBHelper::GetHigh()
+{
+    return sql_manager.GetTodayHigh();
+}
+
+int DBHelper::GetPrevHigh(int day)
+{
+    return sql_manager.GetBeforeHigh(day);
+}
+
+int DBHelper::GetLow()
+{
+    return sql_manager.GetTodayLow();
+}
+
+int DBHelper::GetPrevLow(int day)
+{
+    return sql_manager.GetBeforeLow(day);
+}

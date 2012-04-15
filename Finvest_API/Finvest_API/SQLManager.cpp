@@ -28,7 +28,6 @@ const string F_CLOSE("S_CLOSE");
 const string F_OPEN("S_OPEN");
 const string F_HIGH("S_HIGH");
 const string F_LOW("S_LOW");
-const int TODAY = 20060502;
 
 SQLManager::SQLManager()
 {
@@ -120,6 +119,17 @@ int SQLManager::GetBeforeHigh(int day)
 {
     return ExecuteGetData(F_HIGH, GetBeforeDate(day));
 }
+
+int SQLManager::GetTodayLow()
+{
+    return ExecuteGetData(F_LOW, DateFormatting(&today));
+}
+
+int SQLManager::GetBeforeLow(int day)
+{
+    return ExecuteGetData(F_LOW, GetBeforeDate(day));
+}
+
 
 int SQLManager::ExecuteGetData(const string& field, const string& date)
 {

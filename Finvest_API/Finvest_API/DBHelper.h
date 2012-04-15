@@ -19,8 +19,17 @@ class DBHelper
         int GetClose(); // Get close data today
         int GetPrevClose(int day); // get close data n days before
         int* GetPeriodClose(); // get close data during n days
+
         int GetOpen();
         int GetPrevOpen(int day);
         int* GetPeriodOpen();
+
+        int GetHigh();
+        int GetPrevHigh(int day);
+        int* GetPeriodHigh();
+
+        int GetLow();
+        int GetPrevLow(int day);
+        int* GetPeriodLow();
 };
 #endif
