@@ -52,7 +52,8 @@ int DBHelper::GetClose()
 
 int DBHelper::GetPrevClose(int day)
 {
-    return sql_manager.GetBeforeClose(day);
+    sql_manager.GetBeforeClose(day);
+    return 0;
 }
 
 int DBHelper::GetOpen()

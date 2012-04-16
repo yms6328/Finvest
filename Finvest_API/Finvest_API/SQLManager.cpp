@@ -77,15 +77,17 @@ void SQLManager::SetTestStock(const string& stock_name)
 string SQLManager::GetStockCode()
 {
     string query = "SELECT S_CODE FROM " + T_CODE + " where S_NAME='" + m_stock_name + "'";
-    char** result = ExecuteQuery(query);
-
-    if(result == NULL)
+    MYSQL_RES* result = ExecuteQuery(query);
+    while(m_row = mysql_fetch_row(result))
     {
-        return "no result";
-    }
-    else
-    {
-        m_stock_code = result[0];
+        if(result == NULL)
+        {
+            return "no result";
+        }
+        else
+        {
+            m_stock_code = m_row[0];
+        }
     }
 
     return m_stock_code;
@@ -96,9 +98,9 @@ int SQLManager::GetTodayClose()
     return GetData(F_CLOSE);
 }
 
-int SQLManager::GetBeforeClose(int day)
+void SQLManager::GetBeforeClose(int day)
 {
-    return GetData(F_CLOSE);
+    GetData(F_CLOSE, GetBeforeDate(day), day);
 }
 
 int SQLManager::GetTodayOpen()
@@ -135,29 +137,49 @@ int SQLManager::GetBeforeLow(int day)
 int SQLManager::GetData(const string& field)
 {
     string query = "SELECT " + field + " FROM " + T_DL + " WHERE S_CODE='" + m_stock_code + "' AND S_DATE='" + str_today + "'";
-    char** result = ExecuteQuery(query);
-
-    if(result == NULL)
+    MYSQL_RES* result = ExecuteQuery(query);
+    while(m_row = mysql_fetch_row(result))
     {
-        return 1;
-    }
-    else
-    {
-        return atoi(result[0]);
+        if(result == NULL)
+        {
+            return 1;
+        }
+        else
+        {
+            return atoi(m_row[0]);
+        }
     }
 }
 
-int* SQLManager::GetData(const string& field, const string& mindate, int nday)
+/*int**/ void SQLManager::GetData(const string& field, const string& mindate, int nday)
 {
-    string str_nday = convertInt(nday);
-    string query = "SELECT " + field + "FROM " + T_DL + " WHERE S_CODE='" + m_stock_code + "' AND "
-                   + "S_DATE > '" + mindate + " AND S_DATE < "
-                   + str_today + " ORDER BY S_DATE DESC LIMIT " + str_nday;
     // n일 전 data
     // query = "SELECT " + field + "FROM " + T_DL + " WHERE S_CODE='" + m_stock_code + "' AND "
     // + "S_DATE > '" + minimum date(n + 5) + " AND S_DATE < " + today + " ORDER BY S_DATE DESC LIMIT " + n;
     // n개 가져온 후 마지막 data를 사용
     // n일 간: 위의 쿼리로 가져온 후 전부 다 사용
+    string str_nday = convertInt(nday);
+    string query = "SELECT " + field + ", S_DATE FROM " + T_DL + " WHERE S_CODE='" + m_stock_code + "' AND "
+                   + "S_DATE > '" + mindate + "' AND S_DATE < '"
+                   + str_today + "' ORDER BY S_DATE DESC LIMIT " + str_nday;
+
+    int* arr_data = new int[m_row_num];
+    MYSQL_RES* result = ExecuteQuery(query);
+    while(m_row = mysql_fetch_row(result))
+    {
+        if(result == NULL)
+        {
+            ;
+        }
+        else
+        {
+            cout << m_row[1] << " " << m_row[0] << endl;
+            /*for(int i = 0; i < m_field_num; i++)
+            {
+                // row에서 가져온 값을 int array에 저장;
+            }*/
+        }
+    }
 }
 
 string SQLManager::ConvertIntToStr(int number)
@@ -167,7 +189,7 @@ string SQLManager::ConvertIntToStr(int number)
     return ss.str();
 }
 
-char** SQLManager::ExecuteQuery(const string& full_query)
+MYSQL_RES* SQLManager::ExecuteQuery(const string& full_query)
 {
     if(mysql_query(&m_connect, full_query.c_str()))
     {
@@ -178,7 +200,6 @@ char** SQLManager::ExecuteQuery(const string& full_query)
         m_result = mysql_store_result(&m_connect);
         if(m_result)
         {
-            m_row = mysql_fetch_row(m_result);
             m_row_num = mysql_num_rows(m_result);
             m_field_num = mysql_num_fields(m_result);
             m_exist_result = true;
@@ -189,7 +210,7 @@ char** SQLManager::ExecuteQuery(const string& full_query)
         }
     }
 
-    return m_row;
+    return m_result;
 }
 
 tm SQLManager::InitDate()
@@ -230,14 +251,13 @@ string SQLManager::GetBeforeDate(int nday)
     tnow -= (tday * (nday + 5));
     localtime_s(&newtime, &tnow);
 
-    // n일전 날짜를 출력해 본다.
+    // n일전 날짜를 string으로 return
     char timebuf[26]; 
     strftime(timebuf, 26, "%Y%m%d", &newtime);
-    cout << timebuf << endl;
     return timebuf;
 }
 
-string convertInt(int number)
+string SQLManager::convertInt(int number)
 {
    stringstream ss;
    ss << number;

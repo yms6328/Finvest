@@ -19,7 +19,7 @@ class SQLManager
         std::string GetStockName(const std::string& stock_code);
         
         int GetTodayClose();
-        int GetBeforeClose(int day);
+        void GetBeforeClose(int day);
 
         int GetTodayOpen();
         int GetBeforeOpen(int day);
@@ -50,8 +50,8 @@ class SQLManager
 
         // date formatting을 init 부분에서
         int GetData(const std::string& field);
-        int* GetData(const std::string& field, const std::string& min_date, int nday);
-        char** ExecuteQuery(const std::string& full_query);
+        void GetData(const std::string& field, const std::string& min_date, int nday);
+        MYSQL_RES* ExecuteQuery(const std::string& full_query);
 
         std::string ConvertIntToStr(int number);
 
