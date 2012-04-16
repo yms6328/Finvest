@@ -38,6 +38,7 @@ SQLManager::SQLManager()
     m_exist_result = false;
 
     today = InitDate();
+    str_today = DateFormatting(&today);
 
     mysql_init(&m_connect);
 }
@@ -92,48 +93,48 @@ string SQLManager::GetStockCode()
 
 int SQLManager::GetTodayClose()
 {
-    return ExecuteGetData(F_CLOSE, DateFormatting(&today));
+    return GetData(F_CLOSE);
 }
 
 int SQLManager::GetBeforeClose(int day)
 {
-    return ExecuteGetData(F_CLOSE, GetBeforeDate(day));
+    return GetData(F_CLOSE);
 }
 
 int SQLManager::GetTodayOpen()
 {
-    return ExecuteGetData(F_OPEN, DateFormatting(&today));
+    return GetData(F_OPEN);
 }
 
 int SQLManager::GetBeforeOpen(int day)
 {
-    return ExecuteGetData(F_OPEN, GetBeforeDate(day));
+    return GetData(F_OPEN);
 }
 
 int SQLManager::GetTodayHigh()
 {
-    return ExecuteGetData(F_HIGH, DateFormatting(&today));
+    return GetData(F_HIGH);
 }
 
 int SQLManager::GetBeforeHigh(int day)
 {
-    return ExecuteGetData(F_HIGH, GetBeforeDate(day));
+    return GetData(F_HIGH);
 }
 
 int SQLManager::GetTodayLow()
 {
-    return ExecuteGetData(F_LOW, DateFormatting(&today));
+    return GetData(F_LOW);
 }
 
 int SQLManager::GetBeforeLow(int day)
 {
-    return ExecuteGetData(F_LOW, GetBeforeDate(day));
+    return GetData(F_LOW);
 }
 
 
-int SQLManager::ExecuteGetData(const string& field, const string& date)
+int SQLManager::GetData(const string& field)
 {
-    string query = "SELECT " + field + " FROM " + T_DL + " WHERE S_CODE='" + m_stock_code + "' AND S_DATE='" + date + "'";
+    string query = "SELECT " + field + " FROM " + T_DL + " WHERE S_CODE='" + m_stock_code + "' AND S_DATE='" + str_today + "'";
     char** result = ExecuteQuery(query);
 
     if(result == NULL)
@@ -144,6 +145,19 @@ int SQLManager::ExecuteGetData(const string& field, const string& date)
     {
         return atoi(result[0]);
     }
+}
+
+int* SQLManager::GetData(const string& field, const string& mindate, int nday)
+{
+    string str_nday = convertInt(nday);
+    string query = "SELECT " + field + "FROM " + T_DL + " WHERE S_CODE='" + m_stock_code + "' AND "
+                   + "S_DATE > '" + mindate + " AND S_DATE < "
+                   + str_today + " ORDER BY S_DATE DESC LIMIT " + str_nday;
+    // n일 전 data
+    // query = "SELECT " + field + "FROM " + T_DL + " WHERE S_CODE='" + m_stock_code + "' AND "
+    // + "S_DATE > '" + minimum date(n + 5) + " AND S_DATE < " + today + " ORDER BY S_DATE DESC LIMIT " + n;
+    // n개 가져온 후 마지막 data를 사용
+    // n일 간: 위의 쿼리로 가져온 후 전부 다 사용
 }
 
 string SQLManager::ConvertIntToStr(int number)
@@ -210,15 +224,22 @@ string SQLManager::GetBeforeDate(int nday)
     newtime.tm_mday += 1;
     tday = mktime(&newtime);
  
-    // 현재 시간 time_t 구하여 하루 * n 일수를 빼준다.
+    // 현재 시간 time_t 구하여 하루 * (n+5) 일수를 빼준다
+    // - n일만큼 뺀 날짜가 주말일 수도 있으므로 범위를 크게 잡음
     time_t tnow = mktime(&today);
-    tnow -= (tday * nday);
+    tnow -= (tday * (nday + 5));
     localtime_s(&newtime, &tnow);
 
     // n일전 날짜를 출력해 본다.
     char timebuf[26]; 
-    //asctime_s(timebuf, 26, &newtime); 
     strftime(timebuf, 26, "%Y%m%d", &newtime);
     cout << timebuf << endl;
     return timebuf;
+}
+
+string convertInt(int number)
+{
+   stringstream ss;
+   ss << number;
+   return ss.str();
 }

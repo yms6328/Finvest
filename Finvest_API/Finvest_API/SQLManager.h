@@ -45,9 +45,12 @@ class SQLManager
 
         time_t date;
         struct tm today;
+        std::string str_today;
         struct tm before;
 
-        int ExecuteGetData(const std::string& field, const std::string& date);
+        // date formatting을 init 부분에서
+        int GetData(const std::string& field);
+        int* GetData(const std::string& field, const std::string& min_date, int nday);
         char** ExecuteQuery(const std::string& full_query);
 
         std::string ConvertIntToStr(int number);
@@ -56,6 +59,7 @@ class SQLManager
 
         std::string DateFormatting(tm* tm_date);
         std::string GetBeforeDate(int nday);
+        std::string convertInt(int number);
 };
 
 #endif
