@@ -39,8 +39,8 @@ SQLManager::SQLManager()
     m_is_connect = false;
     m_exist_result = false;
 
-    today = InitDate();
-    str_today = DateFormatting(&today);
+    m_today = InitDate();
+    str_today = DateFormatting(&m_today);
 
     mysql_init(&m_connect);
 }
@@ -70,7 +70,7 @@ bool SQLManager::Connect()
     return m_is_connect;
 }
 
-void SQLManager::SetTestStock(const string& stock_name)
+void SQLManager::SetStock(const string& stock_name)
 {
     m_stock_name = stock_name;
     SQLManager::GetStockCode();
@@ -184,15 +184,8 @@ int SQLManager::GetData(const string& field)
 
 int* SQLManager::GetData(const string& field, const string& mindate, const int nday)
 {
-    /*  n일 전 data
-        query = "SELECT " + field + "FROM " + T_DL + " WHERE S_CODE='" + m_stock_code + "' AND "
-        + "S_DATE > '" + minimum date(n + 5) + " AND S_DATE < " + today + " ORDER BY S_DATE DESC LIMIT " + n;
-        n개 가져온 후 마지막 data를 사용
-        n일 간: 위의 쿼리로 가져온 후 전부 다 사용
-     */
-    cout << "ddd" << endl;
     int count = 0;
-    string str_nday = convertInt(nday);
+    string str_nday = ConvertIntToStr(nday);
     string query = "SELECT " + field + ", S_DATE FROM " + T_DL + " WHERE S_CODE='" + m_stock_code + "' AND "
                    + "S_DATE > '" + mindate + "' AND S_DATE < '"
                    + str_today + "' ORDER BY S_DATE DESC LIMIT " + str_nday;
@@ -217,13 +210,6 @@ int* SQLManager::GetData(const string& field, const string& mindate, const int n
     }
 
     return query_res;
-}
-
-string SQLManager::ConvertIntToStr(int number)
-{
-    stringstream ss;
-    ss << number;
-    return ss.str();
 }
 
 MYSQL_RES* SQLManager::ExecuteQuery(const string& full_query)
@@ -254,7 +240,7 @@ tm SQLManager::InitDate()
 {
     struct tm init_date;
 
-    // temp date & initialize date
+    // temp date & initialize date - 20051104
     init_date.tm_year = 2005 - 1900;
     init_date.tm_mon = 10; // tm_mon = month + 1 = 11;
     init_date.tm_mday = 4;
@@ -283,21 +269,16 @@ string SQLManager::GetPrevDate(int nday)
     newtime.tm_mday += 1;
     tday = mktime(&newtime);
  
-    // 현재 시간 time_t 구하여 하루 * (n+5) 일수를 빼준다
-    // - n일만큼 뺀 날짜가 주말일 수도 있으므로 범위를 크게 잡음
-    time_t tnow = mktime(&today);
+    time_t tnow = mktime(&m_today);
     tnow -= (tday * (nday + 5));
     localtime_s(&newtime, &tnow);
 
-    // n일전 날짜를 string으로 return
-    char timebuf[26]; 
-    strftime(timebuf, 26, "%Y%m%d", &newtime);
-    return timebuf;
+    return DateFormatting(&newtime);
 }
 
-string SQLManager::convertInt(int number)
+string SQLManager::ConvertIntToStr(int number)
 {
-   stringstream ss;
-   ss << number;
-   return ss.str();
+    stringstream ss;
+    ss << number;
+    return ss.str();
 }
