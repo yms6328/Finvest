@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include "DBHelper.h"
+#include "IndexFomular.h"
 
 #define LINE "--------------------------------------------------"
 
@@ -16,6 +17,7 @@ using namespace std;
 void SelectMenu(int menunum);
 void SetMainStock();
 DBHelper db_helper;
+IndexFomular index_fomular;
 
 int main()
 {
@@ -39,6 +41,7 @@ int main()
         cout << "7. Get Previous High" << endl;
         cout << "8. Get Today Low" << endl;
         cout << "9. Get Previous Low" << endl;
+        cout << "10. Ratio" << endl;
         cout << "-1. Exit" << endl;
         cin >> menu_num;
         cout << LINE << endl;
@@ -144,6 +147,35 @@ void SelectMenu(int menunum)
             cin >> number;
             cout << db_helper.GetPrevLow(number) << endl;
         break;
+
+        /*case 10:
+            cout << "10.RSI" << endl;
+            cout << "executing..";
+            data = IndexFomular.result;
+            if(data != 1)
+            {
+                cout << "\r" << "RSI:\t" << data << endl;
+            }
+            else
+            {
+                cout << "\rThere are no result." << endl;
+            }
+        break;*/
+
+        case 10:
+            cout << "15. Ratio of Change" << endl;
+            cout << "executing...";
+            data = index_fomular.ratio();
+             if(data != 1)
+            {
+                cout << "\r" << "Ratio:\t" << data << endl;
+            }
+            else
+            {
+                cout << "\rThere are no result." << endl;
+            }
+        break;
+             
 
         case -1:
             cout << "Good Bye" << endl;
