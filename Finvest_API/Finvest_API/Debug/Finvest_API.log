@@ -1,32 +1,20 @@
-﻿빌드 시작: 4/18/2012 11:33:13 AM
+﻿빌드 시작: 4/18/2012 4:37:57 PM
      1>2 노드의 "C:\Users\hyeyeong\Finvest\Finvest_API\Finvest_API\Finvest_API.vcxproj" 프로젝트(build 대상)입니다.
      1>InitializeBuildStatus:
          "AlwaysCreate"이(가) 지정되었기 때문에 "Debug\Finvest_API.unsuccessfulbuild"을(를) 만들고 있습니다.
        ClCompile:
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\MySQL\MySQL Server 5.5\include" /I"C:\Program Files (x86)\MySQL\MySQL Connector C++ 1.1.0\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt DBHelper.cpp Finvest_API.cpp SQLManager.cpp
-         SQLManager.cpp
-     1>c:\users\hyeyeong\finvest\finvest_api\finvest_api\sqlmanager.h(15): error C2632: 'int' 다음에 'int'이(가) 올 수 없습니다.
-     1>c:\users\hyeyeong\finvest\finvest_api\finvest_api\sqlmanager.h(57): error C2632: 'int' 다음에 'int'이(가) 올 수 없습니다.
-     1>c:\users\hyeyeong\finvest\finvest_api\finvest_api\sqlmanager.h(65): error C2632: 'int' 다음에 'int'이(가) 올 수 없습니다.
-     1>c:\users\hyeyeong\finvest\finvest_api\finvest_api\sqlmanager.cpp(112): error C2065: 'nda' : 선언되지 않은 식별자입니다.
-     1>c:\users\hyeyeong\finvest\finvest_api\finvest_api\sqlmanager.cpp(112): error C2143: 구문 오류 : ')'이(가) '}' 앞에 없습니다.
-     1>c:\users\hyeyeong\finvest\finvest_api\finvest_api\sqlmanager.cpp(112): error C2143: 구문 오류 : ')'이(가) '}' 앞에 없습니다.
-     1>c:\users\hyeyeong\finvest\finvest_api\finvest_api\sqlmanager.cpp(112): error C2661: 'SQLManager::GetData' : 오버로드된 함수에서 2개의 매개 변수를 사용하지 않습니다.
-     1>c:\users\hyeyeong\finvest\finvest_api\finvest_api\sqlmanager.cpp(112): error C2143: 구문 오류 : ';'이(가) '}' 앞에 없습니다.
-     1>c:\users\hyeyeong\finvest\finvest_api\finvest_api\sqlmanager.cpp(222): warning C4244: '=' : 'my_ulonglong'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-         DBHelper.cpp
-     1>c:\users\hyeyeong\finvest\finvest_api\finvest_api\sqlmanager.h(15): error C2632: 'int' 다음에 'int'이(가) 올 수 없습니다.
-     1>c:\users\hyeyeong\finvest\finvest_api\finvest_api\sqlmanager.h(57): error C2632: 'int' 다음에 'int'이(가) 올 수 없습니다.
-     1>c:\users\hyeyeong\finvest\finvest_api\finvest_api\sqlmanager.h(65): error C2632: 'int' 다음에 'int'이(가) 올 수 없습니다.
-         코드를 생성하고 있습니다...
-         컴파일하고 있습니다...
-         Finvest_API.cpp
-     1>c:\users\hyeyeong\finvest\finvest_api\finvest_api\sqlmanager.h(15): error C2632: 'int' 다음에 'int'이(가) 올 수 없습니다.
-     1>c:\users\hyeyeong\finvest\finvest_api\finvest_api\sqlmanager.h(57): error C2632: 'int' 다음에 'int'이(가) 올 수 없습니다.
-     1>c:\users\hyeyeong\finvest\finvest_api\finvest_api\sqlmanager.h(65): error C2632: 'int' 다음에 'int'이(가) 올 수 없습니다.
-         코드를 생성하고 있습니다...
-     1>"C:\Users\hyeyeong\Finvest\Finvest_API\Finvest_API\Finvest_API.vcxproj" 프로젝트를 빌드했습니다(build 대상). - 실패
+         모든 출력이 최신 상태입니다.
+       ManifestResourceCompile:
+         모든 출력이 최신 상태입니다.
+       Link:
+         모든 출력이 최신 상태입니다.
+       Manifest:
+         모든 출력이 최신 상태입니다.
+       FinalizeBuildStatus:
+         "Debug\Finvest_API.unsuccessfulbuild" 파일을 삭제하고 있습니다.
+         "Debug\Finvest_API.lastbuildstate"에 연결(touching)하고 있습니다.
+     1>"C:\Users\hyeyeong\Finvest\Finvest_API\Finvest_API\Finvest_API.vcxproj" 프로젝트를 빌드했습니다(build 대상).
 
-빌드하지 못했습니다.
+빌드했습니다.
 
-경과 시간: 00:00:03.88
+경과 시간: 00:00:00.09

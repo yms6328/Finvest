@@ -37,7 +37,7 @@ void DBHelper::DBConnect()
 
 void DBHelper::SetStock(const string& stock_name)
 {
-    sql_manager.SetTestStock(stock_name);
+    sql_manager.SetStock(stock_name);
 }
 
 string DBHelper::GetStockCode()

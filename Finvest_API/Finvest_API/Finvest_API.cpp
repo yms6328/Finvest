@@ -106,7 +106,7 @@ void SelectMenu(int menunum)
         case 6:
             cout << "6. Get Today High" << endl;
             cout << "executing...";
-            data = db_helper.GetOpen();
+            data = db_helper.GetHigh();
             if(data != 1)
             {
                 cout << "\r" << "High:\t" << data << endl;
@@ -127,7 +127,7 @@ void SelectMenu(int menunum)
         case 8:
             cout << "8. Get Today Low" << endl;
             cout << "executing...";
-            data = db_helper.GetOpen();
+            data = db_helper.GetLow();
             if(data != 1)
             {
                 cout << "\r" << "Low:\t" << data << endl;

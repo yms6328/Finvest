@@ -6,3 +6,4 @@
 */
 
 #include "StockIndex.h"
+#include "DBHelper.h"

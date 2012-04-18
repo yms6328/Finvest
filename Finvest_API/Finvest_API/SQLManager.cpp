@@ -165,6 +165,7 @@ int SQLManager::GetData(const string& field)
     string query = "SELECT " + field + " FROM " + T_DL
                     + " WHERE S_CODE='" + m_stock_code
                     + "' AND S_DATE='" + str_today + "'";
+
     int query_res;
     MYSQL_RES* result = ExecuteQuery(query);
     while(m_row = mysql_fetch_row(result))
@@ -205,7 +206,7 @@ int* SQLManager::GetData(const string& field, const string& mindate, const int n
             {
                 query_res[count] = atoi(m_row[0]);
             }
-            count++;            
+            count++;
         }
     }
 
