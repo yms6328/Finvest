@@ -28,6 +28,8 @@ const string F_CLOSE("S_CLOSE");
 const string F_OPEN("S_OPEN");
 const string F_HIGH("S_HIGH");
 const string F_LOW("S_LOW");
+const int DURING = 100;
+const int ONEDAY = 200;
 
 SQLManager::SQLManager()
 {
@@ -98,9 +100,15 @@ int SQLManager::GetTodayClose()
     return GetData(F_CLOSE);
 }
 
-void SQLManager::GetBeforeClose(int day)
+int SQLManager::GetPrevClose(int nday)
 {
-    GetData(F_CLOSE, GetBeforeDate(day), day);
+    int* result_arr = GetData(F_CLOSE, GetPrevDate(nday), nday);
+    return result_arr[m_row_num - 1];
+}
+
+int* SQLManager::GetPeriodClose(int nday)
+{
+    return GetData(F_CLOSE, GetPrevDate(nday), nday);
 }
 
 int SQLManager::GetTodayOpen()
@@ -108,9 +116,15 @@ int SQLManager::GetTodayOpen()
     return GetData(F_OPEN);
 }
 
-int SQLManager::GetBeforeOpen(int day)
+int SQLManager::GetPrevOpen(int nday)
 {
-    return GetData(F_OPEN);
+    int* result_arr = GetData(F_OPEN, GetPrevDate(nday), nday);
+    return result_arr[m_row_num - 1];
+}
+
+int* SQLManager::GetPeriodOpen(int nday)
+{
+    return GetData(F_OPEN, GetPrevDate(nday), nday);
 }
 
 int SQLManager::GetTodayHigh()
@@ -118,9 +132,15 @@ int SQLManager::GetTodayHigh()
     return GetData(F_HIGH);
 }
 
-int SQLManager::GetBeforeHigh(int day)
+int SQLManager::GetPrevHigh(int nday)
 {
-    return GetData(F_HIGH);
+    int* result_arr = GetData(F_HIGH, GetPrevDate(nday), nday);
+    return result_arr[m_row_num - 1];
+}
+
+int* SQLManager::GetPeriodHigh(int nday)
+{
+    return GetData(F_HIGH, GetPrevDate(nday), nday);
 }
 
 int SQLManager::GetTodayLow()
@@ -128,15 +148,24 @@ int SQLManager::GetTodayLow()
     return GetData(F_LOW);
 }
 
-int SQLManager::GetBeforeLow(int day)
+int SQLManager::GetPrevLow(int nday)
 {
-    return GetData(F_LOW);
+    int* result_arr = GetData(F_LOW, GetPrevDate(nday), nday);
+    return result_arr[m_row_num - 1];
+}
+
+int* SQLManager::GetPeriodLow(int nday)
+{
+    return GetData(F_LOW, GetPrevDate(nday), nday);
 }
 
 
 int SQLManager::GetData(const string& field)
 {
-    string query = "SELECT " + field + " FROM " + T_DL + " WHERE S_CODE='" + m_stock_code + "' AND S_DATE='" + str_today + "'";
+    string query = "SELECT " + field + " FROM " + T_DL
+                    + " WHERE S_CODE='" + m_stock_code
+                    + "' AND S_DATE='" + str_today + "'";
+    int query_res;
     MYSQL_RES* result = ExecuteQuery(query);
     while(m_row = mysql_fetch_row(result))
     {
@@ -146,25 +175,31 @@ int SQLManager::GetData(const string& field)
         }
         else
         {
-            return atoi(m_row[0]);
+            query_res = atoi(m_row[0]);
         }
     }
+
+    return query_res;
 }
 
-/*int**/ void SQLManager::GetData(const string& field, const string& mindate, int nday)
+int* SQLManager::GetData(const string& field, const string& mindate, const int nday)
 {
-    // n일 전 data
-    // query = "SELECT " + field + "FROM " + T_DL + " WHERE S_CODE='" + m_stock_code + "' AND "
-    // + "S_DATE > '" + minimum date(n + 5) + " AND S_DATE < " + today + " ORDER BY S_DATE DESC LIMIT " + n;
-    // n개 가져온 후 마지막 data를 사용
-    // n일 간: 위의 쿼리로 가져온 후 전부 다 사용
+    /*  n일 전 data
+        query = "SELECT " + field + "FROM " + T_DL + " WHERE S_CODE='" + m_stock_code + "' AND "
+        + "S_DATE > '" + minimum date(n + 5) + " AND S_DATE < " + today + " ORDER BY S_DATE DESC LIMIT " + n;
+        n개 가져온 후 마지막 data를 사용
+        n일 간: 위의 쿼리로 가져온 후 전부 다 사용
+     */
+    cout << "ddd" << endl;
+    int count = 0;
     string str_nday = convertInt(nday);
     string query = "SELECT " + field + ", S_DATE FROM " + T_DL + " WHERE S_CODE='" + m_stock_code + "' AND "
                    + "S_DATE > '" + mindate + "' AND S_DATE < '"
                    + str_today + "' ORDER BY S_DATE DESC LIMIT " + str_nday;
 
-    int* arr_data = new int[m_row_num];
     MYSQL_RES* result = ExecuteQuery(query);
+    int* query_res = new int[m_row_num];
+
     while(m_row = mysql_fetch_row(result))
     {
         if(result == NULL)
@@ -173,13 +208,15 @@ int SQLManager::GetData(const string& field)
         }
         else
         {
-            cout << m_row[1] << " " << m_row[0] << endl;
-            /*for(int i = 0; i < m_field_num; i++)
+            for(int i = 0; i < m_field_num; i++)
             {
-                // row에서 가져온 값을 int array에 저장;
-            }*/
+                query_res[count] = atoi(m_row[0]);
+            }
+            count++;            
         }
     }
+
+    return query_res;
 }
 
 string SQLManager::ConvertIntToStr(int number)
@@ -216,7 +253,8 @@ MYSQL_RES* SQLManager::ExecuteQuery(const string& full_query)
 tm SQLManager::InitDate()
 {
     struct tm init_date;
-    // temp date
+
+    // temp date & initialize date
     init_date.tm_year = 2005 - 1900;
     init_date.tm_mon = 10; // tm_mon = month + 1 = 11;
     init_date.tm_mday = 4;
@@ -235,7 +273,7 @@ string SQLManager::DateFormatting(tm* tm_date)
     return buffer;
 }
 
-string SQLManager::GetBeforeDate(int nday)
+string SQLManager::GetPrevDate(int nday)
 {
     struct tm newtime; 
     time_t tday; 

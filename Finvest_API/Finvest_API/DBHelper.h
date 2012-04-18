@@ -16,20 +16,20 @@ class DBHelper
 
         std::string GetStockCode();
 
-        int GetClose(); // Get close data today
-        int GetPrevClose(int day); // get close data n days before
-        int* GetPeriodClose(); // get close data during n days
+        int GetClose(); // Get close data tonday
+        int GetPrevClose(int nday); // get close data n ndays before
+        int* GetPeriodClose(int nday); // get close data during n ndays
 
         int GetOpen();
-        int GetPrevOpen(int day);
-        int* GetPeriodOpen();
+        int GetPrevOpen(int nday);
+        int* GetPeriodOpen(int nday);
 
         int GetHigh();
-        int GetPrevHigh(int day);
-        int* GetPeriodHigh();
+        int GetPrevHigh(int nday);
+        int* GetPeriodHigh(int nday);
 
         int GetLow();
-        int GetPrevLow(int day);
-        int* GetPeriodLow();
+        int GetPrevLow(int nday);
+        int* GetPeriodLow(int nday);
 };
 #endif

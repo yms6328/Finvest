@@ -19,16 +19,20 @@ class SQLManager
         std::string GetStockName(const std::string& stock_code);
         
         int GetTodayClose();
-        void GetBeforeClose(int day);
+        int GetPrevClose(int nday);
+        int* GetPeriodClose(int nday);
 
         int GetTodayOpen();
-        int GetBeforeOpen(int day);
+        int GetPrevOpen(int nday);
+        int* GetPeriodOpen(int nday);
 
         int GetTodayHigh();
-        int GetBeforeHigh(int day);
+        int GetPrevHigh(int nday);
+        int* GetPeriodHigh(int nday);
 
         int GetTodayLow();
-        int GetBeforeLow(int day);
+        int GetPrevLow(int nday);
+        int* GetPeriodLow(int nday);
 
     private:
         MYSQL m_connect;
@@ -46,11 +50,11 @@ class SQLManager
         time_t date;
         struct tm today;
         std::string str_today;
-        struct tm before;
+        struct tm Prev;
 
         // date formatting을 init 부분에서
         int GetData(const std::string& field);
-        void GetData(const std::string& field, const std::string& min_date, int nday);
+        int* GetData(const std::string& field, const std::string& min_date, const int nday);
         MYSQL_RES* ExecuteQuery(const std::string& full_query);
 
         std::string ConvertIntToStr(int number);
@@ -58,7 +62,7 @@ class SQLManager
         tm InitDate();
 
         std::string DateFormatting(tm* tm_date);
-        std::string GetBeforeDate(int nday);
+        std::string GetPrevDate(int nday);
         std::string convertInt(int number);
 };
 
