@@ -3,6 +3,10 @@
 
 class StockIndex
 {
+	void SCFlag();
+	void CCIFlag();
+
+
 };
 
 #endif;

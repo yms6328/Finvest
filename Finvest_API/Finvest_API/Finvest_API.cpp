@@ -19,6 +19,7 @@ void SetMainStock();
 DBHelper db_helper;
 IndexFomular index_fomular;
 
+
 int main()
 {
     index_fomular.db_helper.SetStock("LG");
@@ -45,6 +46,7 @@ int main()
         cout << "10. Ratio" << endl;
         cout << "11. Pivot Point" << endl;
         cout << "-1. Exit" << endl;
+		cout << "10. sonar"<<endl;
         cin >> menu_num;
         cout << LINE << endl;
         SelectMenu(menu_num);
@@ -200,6 +202,11 @@ void SelectMenu(int menunum)
             cout << "Good Bye" << endl;
             db_helper.~DBHelper();
         break;
+
+		case 10:
+			cout <<"10. sonar"<<endl;
+			cout << IndexFomular.getSONARValue() << endl;
+		break;
     }
 }
 
