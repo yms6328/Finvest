@@ -10,6 +10,8 @@ class IndexFomular
 
         int ratio();
 
+        int pivot();
+
 };
 
 #endif;

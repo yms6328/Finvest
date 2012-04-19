@@ -162,11 +162,13 @@ int* SQLManager::GetPeriodLow(int nday)
 
 int SQLManager::GetData(const string& field)
 {
+    cout << "code: " << m_stock_code << endl;
     string query = "SELECT " + field + " FROM " + T_DL
                     + " WHERE S_CODE='" + m_stock_code
                     + "' AND S_DATE='" + str_today + "'";
 
-    int query_res;
+    cout << query << endl;
+    int query_res = 0;
     MYSQL_RES* result = ExecuteQuery(query);
     while(m_row = mysql_fetch_row(result))
     {
@@ -176,10 +178,11 @@ int SQLManager::GetData(const string& field)
         }
         else
         {
+            cout << "query result: " << m_row[0] << endl;
             query_res = atoi(m_row[0]);
         }
     }
-
+    cout << "result: " << query_res << endl;
     return query_res;
 }
 

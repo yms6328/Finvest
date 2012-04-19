@@ -1,3 +1,4 @@
+#include <iostream>
 #include "IndexFomular.h"
 #include "DBHelper.h"
 
@@ -12,6 +13,7 @@
  
 int rsi;
  int ratio;
+ int pivot;
     int t_close;
     int prev_close;
 
@@ -25,14 +27,50 @@ int rsi;
 }*/
 
 int IndexFomular::ratio(){
-    int ratio;
+// 변화율 = {(오늘종가 - 12일전 종가) / 12일전 종가 } * 100
+
+    int ratio = 0;
     int t_close;
     int prev_close;
 
     t_close = db_helper.GetClose();
-    prev_close = db_helper.GetPrevClose(12);
+    //prev_close = db_helper.GetPrevClose(12);
+    std::cout << "test: " << t_close << std::endl;
+    std::cout << "test: " << db_helper.GetPrevClose(12) << std::endl;
+    //ratio = ((t_close - prev_close)/prev_close) * 100;
 
-    ratio = ((t_close - prev_close)/prev_close) * 100;
-
-    return ratio;
+    return ratio; // hyojin kim
 }
+
+int IndexFomular::pivot(){
+//pivot point = (전일의 고가 + 전일의 저가 + 전일의 종가) / 3
+    int ppoint;
+    int y_high;
+    int y_low;
+    int y_close;
+    int res1;
+    int sup1;
+    int res2;
+    int sup2;
+
+   y_high = db_helper.GetPrevHigh(1);
+   y_low = db_helper.GetPrevLow(1);
+   y_close = db_helper.GetPrevClose(1);
+
+   std::cout << "test: " << y_high << std::endl;
+   std::cout << "test: " << y_low << std::endl;
+   std::cout << "test: " << y_close << std::endl;
+
+    ppoint = (y_high + y_low + y_close) / 3;
+    res1 = (2 * ppoint) - y_low;
+    sup1 = (2 * ppoint) - y_high;
+    res2 = (ppoint - sup1) + res1;
+    sup2 = ppoint - (res1 - sup1);
+
+   // return ppoint, res1, sup1, res2, sup2;
+    //hyojin kim
+   //ppoint
+
+}
+
+
