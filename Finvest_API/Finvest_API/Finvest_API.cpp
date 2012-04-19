@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include "DBHelper.h"
+#include "IndexFomular.h"
 
 #define LINE "--------------------------------------------------"
 
@@ -16,6 +17,7 @@ using namespace std;
 void SelectMenu(int menunum);
 void SetMainStock();
 DBHelper db_helper;
+
 
 int main()
 {
@@ -40,6 +42,7 @@ int main()
         cout << "8. Get Today Low" << endl;
         cout << "9. Get Previous Low" << endl;
         cout << "-1. Exit" << endl;
+		cout << "10. sonar"<<endl;
         cin >> menu_num;
         cout << LINE << endl;
         SelectMenu(menu_num);
@@ -149,6 +152,11 @@ void SelectMenu(int menunum)
             cout << "Good Bye" << endl;
             db_helper.~DBHelper();
         break;
+
+		case 10:
+			cout <<"10. sonar"<<endl;
+			cout << IndexFomular.getSONARValue() << endl;
+		break;
     }
 }
 
