@@ -21,6 +21,7 @@ IndexFomular index_fomular;
 
 int main()
 {
+    index_fomular.db_helper.SetStock("LG");
     int menu_num = 0;
 
     cout << LINE << endl;

@@ -47,6 +47,7 @@ string DBHelper::GetStockCode()
 
 int DBHelper::GetClose()
 {
+    cout << "Get Close() " << endl;
     return sql_manager.GetTodayClose();
 }
 

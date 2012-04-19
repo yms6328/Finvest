@@ -1,25 +1,36 @@
-<<<<<<< HEAD
-﻿빌드 시작: 4/18/2012 4:37:57 PM
+﻿빌드 시작: 4/18/2012 11:39:48 PM
      1>2 노드의 "C:\Users\hyeyeong\Finvest\Finvest_API\Finvest_API\Finvest_API.vcxproj" 프로젝트(build 대상)입니다.
-=======
-﻿빌드 시작: 4/17/2012 11:19:46 PM
-     1>2 노드의 "C:\Users\김효진\Finvest\Finvest_API\Finvest_API\Finvest_API.vcxproj" 프로젝트(build 대상)입니다.
->>>>>>> db752b2584e46423539ea9106768f8e35ce7f938
      1>InitializeBuildStatus:
          "AlwaysCreate"이(가) 지정되었기 때문에 "Debug\Finvest_API.unsuccessfulbuild"을(를) 만들고 있습니다.
        ClCompile:
-         모든 출력이 최신 상태입니다.
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\MySQL\MySQL Server 5.5\include" /I"C:\Program Files (x86)\MySQL\MySQL Connector C++ 1.1.0\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt DBHelper.cpp IndexFomular.cpp SQLManager.cpp
+         SQLManager.cpp
+     1>c:\users\hyeyeong\finvest\finvest_api\finvest_api\sqlmanager.cpp(230): warning C4244: '=' : 'my_ulonglong'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+         IndexFomular.cpp
+     1>c:\users\hyeyeong\finvest\finvest_api\finvest_api\indexfomular.cpp(30): warning C4101: 't_close' :참조되지 않은 지역 변수입니다.
+     1>c:\users\hyeyeong\finvest\finvest_api\finvest_api\indexfomular.cpp(31): warning C4101: 'prev_close' :참조되지 않은 지역 변수입니다.
+         DBHelper.cpp
+         코드를 생성하고 있습니다...
        ManifestResourceCompile:
          모든 출력이 최신 상태입니다.
        Link:
-         모든 출력이 최신 상태입니다.
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\hyeyeong\Finvest\Finvest_API\Debug\Finvest_API.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files (x86)\MySQL\MySQL Connector C++ 1.1.0\lib" /LIBPATH:"C:\Program Files (x86)\MySQL\MySQL Server 5.5\lib\debug" libmysql.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\Finvest_API.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\hyeyeong\Finvest\Finvest_API\Debug\Finvest_API.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\hyeyeong\Finvest\Finvest_API\Debug\Finvest_API.lib" /MACHINE:X86 Debug\Finvest_API.exe.embed.manifest.res
+         Debug\DBHelper.obj
+         Debug\Finvest_API.obj
+         Debug\IndexFomular.obj
+         Debug\SQLManager.obj
+         Debug\StockIndex.obj
        Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"Debug\Finvest_API.exe.embed.manifest" /manifest Debug\Finvest_API.exe.intermediate.manifest
          모든 출력이 최신 상태입니다.
+       LinkEmbedManifest:
+         모든 출력이 최신 상태입니다.
+         Finvest_API.vcxproj -> C:\Users\hyeyeong\Finvest\Finvest_API\Debug\Finvest_API.exe
        FinalizeBuildStatus:
          "Debug\Finvest_API.unsuccessfulbuild" 파일을 삭제하고 있습니다.
          "Debug\Finvest_API.lastbuildstate"에 연결(touching)하고 있습니다.
-     1>"C:\Users\김효진\Finvest\Finvest_API\Finvest_API\Finvest_API.vcxproj" 프로젝트를 빌드했습니다(build 대상).
+     1>"C:\Users\hyeyeong\Finvest\Finvest_API\Finvest_API\Finvest_API.vcxproj" 프로젝트를 빌드했습니다(build 대상).
 
 빌드했습니다.
 
-경과 시간: 00:00:00.10
+경과 시간: 00:00:05.50

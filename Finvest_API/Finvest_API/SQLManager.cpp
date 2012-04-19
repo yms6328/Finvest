@@ -74,6 +74,7 @@ void SQLManager::SetStock(const string& stock_name)
 {
     m_stock_name = stock_name;
     SQLManager::GetStockCode();
+    cout << "code2: " << m_stock_code << endl;
 }
 
 string SQLManager::GetStockCode()
@@ -97,6 +98,7 @@ string SQLManager::GetStockCode()
 
 int SQLManager::GetTodayClose()
 {
+    cout << "code: " << m_stock_code << endl;
     return GetData(F_CLOSE);
 }
 
@@ -162,6 +164,7 @@ int* SQLManager::GetPeriodLow(int nday)
 
 int SQLManager::GetData(const string& field)
 {
+    cout << "stock code: " << m_stock_code << endl;
     string query = "SELECT " + field + " FROM " + T_DL
                     + " WHERE S_CODE='" + m_stock_code
                     + "' AND S_DATE='" + str_today + "'";
