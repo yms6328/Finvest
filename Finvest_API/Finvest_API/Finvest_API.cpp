@@ -43,6 +43,7 @@ int main()
         cout << "8. Get Today Low" << endl;
         cout << "9. Get Previous Low" << endl;
         cout << "10. Ratio" << endl;
+        cout << "11. Pivot Point" << endl;
         cout << "-1. Exit" << endl;
         cin >> menu_num;
         cout << LINE << endl;
@@ -170,6 +171,23 @@ void SelectMenu(int menunum)
              if(data != 1)
             {
                 cout << "\r" << "Ratio:\t" << data << endl;
+                //data가 0이하에서 0이상이 되면 매수
+                //data가 0이상에서 0이하가 되면 매도
+            }
+            else
+            {
+                cout << "\rThere are no result." << endl;
+            }
+        break;
+
+        case 11:
+            cout << "17. Pivot Point" << endl;
+            cout << "executing...";
+            data = index_fomular.pivot();
+             if(data != 1)
+            {
+                cout << "\r" << "Pivot Point:\t" << data << endl;
+                
             }
             else
             {
