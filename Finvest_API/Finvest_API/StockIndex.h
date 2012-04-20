@@ -3,10 +3,13 @@
 
 class StockIndex
 {
-	void SCFlag();
-	void CCIFlag();
+    public:
+        IndexFomula index_formula;
 
+        bool SetStock(const std::string& stock_name);
 
+        bool CCI();
+        bool Sonar();
+        bool SC();
 };
-
 #endif;

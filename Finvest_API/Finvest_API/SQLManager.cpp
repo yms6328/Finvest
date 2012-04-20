@@ -74,7 +74,6 @@ void SQLManager::SetStock(const string& stock_name)
 {
     m_stock_name = stock_name;
     SQLManager::GetStockCode();
-    cout << "code2: " << m_stock_code << endl;
 }
 
 string SQLManager::GetStockCode()
@@ -98,7 +97,6 @@ string SQLManager::GetStockCode()
 
 int SQLManager::GetTodayClose()
 {
-    cout << "code: " << m_stock_code << endl;
     return GetData(F_CLOSE);
 }
 
@@ -164,16 +162,9 @@ int* SQLManager::GetPeriodLow(int nday)
 
 int SQLManager::GetData(const string& field)
 {
-<<<<<<< HEAD
-    cout << "stock code: " << m_stock_code << endl;
-=======
-    cout << "code: " << m_stock_code << endl;
->>>>>>> 12ec62312b39a7fd7d44dbc4173dd6e383b3ce56
     string query = "SELECT " + field + " FROM " + T_DL
                     + " WHERE S_CODE='" + m_stock_code
                     + "' AND S_DATE='" + str_today + "'";
-
-    cout << query << endl;
     int query_res = 0;
     MYSQL_RES* result = ExecuteQuery(query);
     while(m_row = mysql_fetch_row(result))
@@ -184,11 +175,9 @@ int SQLManager::GetData(const string& field)
         }
         else
         {
-            cout << "query result: " << m_row[0] << endl;
             query_res = atoi(m_row[0]);
         }
     }
-    cout << "result: " << query_res << endl;
     return query_res;
 }
 
