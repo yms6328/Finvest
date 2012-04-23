@@ -40,7 +40,7 @@ class SQLManager
 
         std::string m_stock_name;
         std::string m_stock_code;
-        std::string str_today;
+	std::string str_today;
 
         bool m_is_connect;
         bool m_exist_result;

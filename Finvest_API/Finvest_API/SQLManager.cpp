@@ -78,7 +78,8 @@ void SQLManager::SetStock(const string& stock_name)
 
 string SQLManager::GetStockCode()
 {
-    string query = "SELECT S_CODE FROM " + T_CODE + " where S_NAME='" + m_stock_name + "'";
+    string query = "SELECT S_CODE FROM " + T_CODE + 
+                    " where S_NAME='" + m_stock_name + "'";
     MYSQL_RES* result = ExecuteQuery(query);
     while(m_row = mysql_fetch_row(result))
     {
