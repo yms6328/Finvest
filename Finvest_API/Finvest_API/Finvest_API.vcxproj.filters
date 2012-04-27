@@ -39,7 +39,16 @@
     <ClCompile Include="StockIndex.cpp">
       <Filter>소스 파일\Index</Filter>
     </ClCompile>
-    <ClCompile Include="IndexFomular.cpp">
+    <ClCompile Include="DBUpdate.cpp">
+      <Filter>소스 파일\API</Filter>
+    </ClCompile>
+    <ClCompile Include="Stock.cpp">
+      <Filter>소스 파일\API</Filter>
+    </ClCompile>
+    <ClCompile Include="test.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="IndexFomula.cpp">
       <Filter>소스 파일\Fomular</Filter>
     </ClCompile>
   </ItemGroup>
@@ -53,7 +62,10 @@
     <ClInclude Include="StockIndex.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="IndexFomular.h">
+    <ClInclude Include="Stock.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="IndexFomula.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
