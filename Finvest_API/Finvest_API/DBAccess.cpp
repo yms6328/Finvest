@@ -13,11 +13,9 @@
 #define DB_PASS "mmgp"
 #define DB_NAME "stdb_dbo"
 
-using namespace std;
-
-const string T_DL("dbo_st_dldata");
-const string T_CODE("dbo_st_code");
-const string T_TB("dbo_st_tbdata");
+const std::string T_DL("st_dldata");
+const std::string T_CODE("st_code");
+const std::string T_TB("st_tbdata");
 
 DBAccess::DBAccess()
 {
@@ -53,24 +51,20 @@ bool DBAccess::DBConnect()
     return m_isConnect;
 }
 
-bool DBAccess::SetStock(const string& stock_code)
+bool DBAccess::SetStock(const std::string& stock_name)
 {
     ClearMemory();
-    return LoadData(stock_code);
+    return LoadData(DBAccess::GetStockCode(stock_name));
 }
 
-bool DBAccess::LoadData(const string& stock_code)
+bool DBAccess::LoadData(const std::string& stock_code)
 {
     int count = 0;
-    string query = "SELECT * FROM ";
-    query += T_DL;
-    query += " WHERE S_CODE = '";
-    query += stock_code;
-    query += "' AND S_DATE <= '";
-    query += str_today;
-    query += "' ORDER BY S_DATE DESC LIMIT 50";
+    std::string query = "SELECT * FROM " + T_DL;
+    query += " WHERE S_CODE = '" + stock_code + "'";
+    query += "AND S_DATE <= '" + str_today + "'";
+    query += "ORDER BY S_DATE DESC LIMIT 50";
 
-    cout << query << endl;
     if(mysql_query(&m_connect, query.c_str()))
     {
         m_existResult = false;
@@ -86,25 +80,31 @@ bool DBAccess::LoadData(const string& stock_code)
 
             while(m_row = mysql_fetch_row(m_result))
             {
-                if(m_result == NULL)
-                {
-                    m_existResult = false;
-                }
-                else
-                {
-                    gStock_memory[count].m_cDate = m_row[1];
-                    /*
-                        save data to array
-                        !
-                        how to convert char* to double or float
-                        int -> atoi
-                    */
-                }
+                gStock_memory[count].m_cDate = m_row[1];
+                gStock_memory[count].m_nOpen = atoi(m_row[2]);
+                gStock_memory[count].m_nHigh = atoi(m_row[3]);
+                gStock_memory[count].m_nLow = atoi(m_row[4]);
+                gStock_memory[count].m_nClose = atoi(m_row[5]);
+                gStock_memory[count].m_nDiff = atoi(m_row[6]);
+                gStock_memory[count].m_dVolume = atof(m_row[7]);
+                gStock_memory[count].m_fScale = (float)atof(m_row[8]);
+                gStock_memory[count].m_dPMA5 = atof(m_row[9]);
+                gStock_memory[count].m_dPMA10 = atof(m_row[10]);
+                gStock_memory[count].m_dPMA20 = atof(m_row[11]);
+                gStock_memory[count].m_dPMA60 = atof(m_row[12]);
+                gStock_memory[count].m_dPMA120 = atof(m_row[13]);
+                gStock_memory[count].m_dVMA5 = atof(m_row[14]);
+                gStock_memory[count].m_dVMA10 = atof(m_row[15]);
+                gStock_memory[count].m_dVMA20 = atof(m_row[16]);
+                gStock_memory[count].m_dVMA60 = atof(m_row[17]);
+                gStock_memory[count].m_dVMA120 = atof(m_row[18]);
+
                 count++;
             }
         }
         else
         {
+            printf("No result \n");
             m_existResult = false;
         }
     }
@@ -128,11 +128,12 @@ int DBAccess::GetPrevClose(int nDay)
 
 int* DBAccess::GetClose(int nDay)
 {
-    int* arr;
+    int* arr = new int[nDay];
     for(int cnt = 0; cnt < nDay; cnt++)
     {
         arr[cnt] = gStock_memory[cnt].m_nClose;
     }
+    return arr;
 }
 
 // Open
@@ -148,11 +149,12 @@ int DBAccess::GetPrevOpen(int nDay)
 
 int* DBAccess::GetOpen(int nDay)
 {
-    int* arr;
+    int* arr = new int[nDay];
     for(int cnt = 0; cnt < nDay; cnt++)
     {
         arr[cnt] = gStock_memory[cnt].m_nOpen;
     }
+    return arr;
 }
 
 // High
@@ -168,11 +170,12 @@ int DBAccess::GetPrevHigh(int nDay)
 
 int* DBAccess::GetHigh(int nDay)
 {
-    int* arr;
+    int* arr = new int[nDay];
     for(int cnt = 0; cnt < nDay; cnt++)
     {
         arr[cnt] = gStock_memory[cnt].m_nHigh;
     }
+    return arr;
 }
 
 // Low
@@ -188,11 +191,12 @@ int DBAccess::GetPrevLow(int nDay)
 
 int* DBAccess::GetLow(int nDay)
 {
-    int* arr;
+    int* arr = new int[nDay];
     for(int cnt = 0; cnt < nDay; cnt++)
     {
         arr[cnt] = gStock_memory[cnt].m_nLow;
     }
+    return arr;
 }
 
 // Diff
@@ -208,11 +212,12 @@ int DBAccess::GetPrevDiff(int nDay)
 
 int* DBAccess::GetDiff(int nDay)
 {
-    int* arr;
+    int* arr = new int[nDay];
     for(int cnt = 0; cnt < nDay; cnt++)
     {
         arr[cnt] = gStock_memory[cnt].m_nDiff;
     }
+    return arr;
 }
 
 // Volume
@@ -228,11 +233,78 @@ double DBAccess::GetPrevVolume(int nDay)
 
 double* DBAccess::GetVolume(int nDay)
 {
-    int* arr;
+    double* arr = new double[nDay];
     for(int cnt = 0; cnt < nDay; cnt++)
     {
         arr[cnt] = gStock_memory[cnt].m_dVolume;
     }
+    return arr;
+}
+
+// Scale
+float DBAccess::GetScale()
+{
+    return gStock_memory[0].m_fScale;
+}
+
+// PMA5
+double DBAccess::GetPMA5()
+{
+    return gStock_memory[0].m_dPMA5;
+}
+
+// PMA10
+double DBAccess::GetPMA10()
+{
+    return gStock_memory[0].m_dPMA10;
+}
+
+// PMA20
+double DBAccess::GetPMA20()
+{
+    return gStock_memory[0].m_dPMA20;
+}
+
+// PMA60
+double DBAccess::GetPMA60()
+{
+    return gStock_memory[0].m_dPMA60;
+}
+
+// PMA120
+double DBAccess::GetPMA120()
+{
+    return gStock_memory[0].m_dPMA120;
+}
+
+// VMA5
+double DBAccess::GetVMA5()
+{
+    return gStock_memory[0].m_dVMA5;
+}
+
+// VMA10
+double DBAccess::GetVMA10()
+{
+    return gStock_memory[0].m_dVMA10;
+}
+
+// VMA20
+double DBAccess::GetVMA20()
+{
+    return gStock_memory[0].m_dVMA20;
+}
+
+// VMA60
+double DBAccess::GetVMA60()
+{
+    return gStock_memory[0].m_dVMA60;
+}
+
+// VMA120
+double DBAccess::GetVMA120()
+{
+    return gStock_memory[0].m_dVMA120;
 }
 
 /*
@@ -263,4 +335,25 @@ void DBAccess::ClearMemory()
         gStock_memory[i].m_dVMA60 = 0.0;
         gStock_memory[i].m_dVMA120 = 0.0;
     }
+}
+
+std::string DBAccess::GetStockCode(const std::string& stock_name)
+{
+    std::string code;
+    std::string query = "SELECT S_CODE FROM " + T_CODE + "WHERE S_NAME = '";
+    query += stock_name + "' ";
+
+    std::cout << "execute query --- " << query << std::endl;
+    mysql_query(&m_connect, query.c_str());
+    m_result = mysql_store_result(&m_connect);
+    if(m_result)
+    {
+        code = m_row[0];
+    }
+    else
+    {
+        code = "";
+    }
+
+    return code;
 }

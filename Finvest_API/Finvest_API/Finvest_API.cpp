@@ -13,13 +13,14 @@ using namespace std;
 int main()
 {
     DBAccess db_access;
-    string code;
-    cout << "주식코드 입력: ";
-    cin >> code;
+    string name;
+    cout << "종목 이름 입력: ";
+    cin >> name;
 
-    if(db_access.SetStock(code))
+    if(db_access.SetStock(name))
     {
         cout << "Success!" << endl;
     }
+
     return 0;
 }

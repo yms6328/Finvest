@@ -74,12 +74,25 @@ class DBAccess
         double GetPrevVolume(int nDay);
         double* GetVolume(int nDay);
 
-        double GetScale();
+        float GetScale();
+
+        double GetPMA5();
+        double GetPMA10();
+        double GetPMA20();
+        double GetPMA60();
+        double GetPMA120();
+
+        double GetVMA5();
+        double GetVMA10();
+        double GetVMA20();
+        double GetVMA60();
+        double GetVMA120();
 
         bool DBConnect();
     private:
         void ClearMemory();
         bool LoadData(const std::string& stock_code);
+        std::string GetStockCode(const std::string& stock_name);
 
 };
 #endif
