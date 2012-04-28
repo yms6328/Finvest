@@ -84,16 +84,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DBAccess.cpp" />
     <ClCompile Include="DBHelper.cpp" />
     <ClCompile Include="DBUpdate.cpp" />
     <ClCompile Include="Finvest_API.cpp" />
     <ClCompile Include="IndexFomula.cpp" />
     <ClCompile Include="SQLManager.cpp" />
-    <ClCompile Include="Stock.cpp" />
     <ClCompile Include="StockIndex.cpp" />
-    <ClCompile Include="test.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DBAccess.h" />
     <ClInclude Include="DBHelper.h" />
     <ClInclude Include="IndexFomula.h" />
     <ClInclude Include="SQLManager.h" />
