@@ -5,6 +5,7 @@
 
 class DBAccess
 {
+    // struct: save one row in query result
     typedef struct stock
     {
         std::string m_cDate;
@@ -16,12 +17,15 @@ class DBAccess
         float m_fScale;
 
         double m_dVolume;
+
+        // PMA: 가격 이동평균, index에서 사용
         double m_dPMA5;
         double m_dPMA10;
         double m_dPMA20;
         double m_dPMA60;
         double m_dPMA120;
 
+        // VMA: 거래량 이동평균
         double m_dVMA5;
         double m_dVMA10;
         double m_dVMA20;
@@ -89,10 +93,11 @@ class DBAccess
         double GetVMA120();
 
         bool DBConnect();
+
     private:
         void ClearMemory();
         bool LoadData(const std::string& stock_code);
         std::string GetStockCode(const std::string& stock_name);
-
+        int* GetDataArray(int nDay, int data);
 };
 #endif

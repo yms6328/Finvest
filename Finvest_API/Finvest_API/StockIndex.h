@@ -1,15 +1,18 @@
-//#ifndef stockindex_h
-//#define stockindex_h
-//
-//class stockindex
-//{
-//    public:
-//        indexfomula index_formula;
-//
-//        bool setstock(const std::string& stock_name);
-//
-//        bool cci();
-//        bool sonar();
-//        bool sc();
-//};
-//#endif;
+#ifndef stockindex_h
+#define stockindex_h
+#include "IndexFormula.h"
+
+class StockIndex
+{
+    IndexFormula formula;
+
+    public:
+        void init();
+
+        bool CCI();
+        bool Sonar();
+        bool Sc();
+        
+        int GetEMA(int day);
+};
+#endif;

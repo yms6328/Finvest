@@ -8,19 +8,14 @@
 #include <iostream>
 #include <string>
 #include "DBAccess.h"
+#include "StockIndex.h"
 using namespace std;
 
 int main()
 {
-    DBAccess db_access;
+    StockIndex st_index;
     string name;
-    cout << "종목 이름 입력: ";
-    cin >> name;
-
-    if(db_access.SetStock(name))
-    {
-        cout << "Success!" << endl;
-    }
-
+    st_index.init();
+    st_index.GetEMA(5);
     return 0;
 }

@@ -22,19 +22,10 @@
     <Filter Include="소스 파일\Fomular">
       <UniqueIdentifier>{f4e78bd1-72bc-4713-b018-3c50ad4e9e51}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Util">
-      <UniqueIdentifier>{a7ac289a-686d-47e9-86d7-2c9f5e68f775}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Finvest_API.cpp">
       <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="DBHelper.cpp">
-      <Filter>소스 파일\API</Filter>
-    </ClCompile>
-    <ClCompile Include="SQLManager.cpp">
-      <Filter>소스 파일\Util</Filter>
     </ClCompile>
     <ClCompile Include="StockIndex.cpp">
       <Filter>소스 파일\Index</Filter>
@@ -42,30 +33,24 @@
     <ClCompile Include="DBUpdate.cpp">
       <Filter>소스 파일\API</Filter>
     </ClCompile>
-    <ClCompile Include="IndexFomula.cpp">
-      <Filter>소스 파일\Fomular</Filter>
-    </ClCompile>
     <ClCompile Include="DBAccess.cpp">
       <Filter>소스 파일\API</Filter>
     </ClCompile>
+    <ClCompile Include="IndexFormula.cpp">
+      <Filter>소스 파일\Fomular</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DBHelper.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="SQLManager.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="StockIndex.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Stock.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="IndexFomula.h">
+    <ClInclude Include="DBAccess.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="DBAccess.h">
+    <ClInclude Include="IndexFormula.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
