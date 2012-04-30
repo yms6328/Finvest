@@ -16,6 +16,5 @@ int main()
     StockIndex st_index;
     string name;
     st_index.init();
-    st_index.GetEMA(5);
     return 0;
 }

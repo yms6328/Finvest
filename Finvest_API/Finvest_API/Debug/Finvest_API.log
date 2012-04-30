@@ -1,11 +1,17 @@
-﻿빌드 시작: 4/30/2012 12:15:05 PM
+﻿빌드 시작: 4/30/2012 6:35:08 PM
      1>2 노드의 "C:\Users\hyeyeong\Finvest\Finvest_API\Finvest_API\Finvest_API.vcxproj" 프로젝트(build 대상)입니다.
      1>InitializeBuildStatus:
          "AlwaysCreate"이(가) 지정되었기 때문에 "Debug\Finvest_API.unsuccessfulbuild"을(를) 만들고 있습니다.
        ClCompile:
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\MySQL\MySQL Server 5.5\include" /I"C:\Program Files (x86)\MySQL\MySQL Connector C++ 1.1.0\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt IndexFormula.cpp
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\MySQL\MySQL Server 5.5\include" /I"C:\Program Files (x86)\MySQL\MySQL Connector C++ 1.1.0\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt DBAccess.cpp Finvest_API.cpp IndexFormula.cpp StockIndex.cpp
+         StockIndex.cpp
          IndexFormula.cpp
-     1>c:\users\hyeyeong\finvest\finvest_api\finvest_api\indexformula.cpp(160): warning C4244: '=' : 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+     1>c:\users\hyeyeong\finvest\finvest_api\finvest_api\indexformula.cpp(122): warning C4101: 'sonar_m_signal' :참조되지 않은 지역 변수입니다.
+     1>c:\users\hyeyeong\finvest\finvest_api\finvest_api\indexformula.cpp(145): warning C4244: '=' : 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+         Finvest_API.cpp
+         DBAccess.cpp
+     1>c:\users\hyeyeong\finvest\finvest_api\finvest_api\dbaccess.cpp(80): warning C4244: '=' : 'my_ulonglong'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+         코드를 생성하고 있습니다...
        ManifestResourceCompile:
          모든 출력이 최신 상태입니다.
        Link:
@@ -28,4 +34,4 @@
 
 빌드했습니다.
 
-경과 시간: 00:00:02.83
+경과 시간: 00:00:06.32
