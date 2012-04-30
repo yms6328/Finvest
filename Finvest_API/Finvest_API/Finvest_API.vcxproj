@@ -84,16 +84,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DBHelper.cpp" />
+    <ClCompile Include="DBAccess.cpp" />
+    <ClCompile Include="DBUpdate.cpp" />
     <ClCompile Include="Finvest_API.cpp" />
-    <ClCompile Include="IndexFomular.cpp" />
-    <ClCompile Include="SQLManager.cpp" />
+    <ClCompile Include="IndexFormula.cpp" />
     <ClCompile Include="StockIndex.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DBHelper.h" />
-    <ClInclude Include="IndexFomular.h" />
-    <ClInclude Include="SQLManager.h" />
+    <ClInclude Include="DBAccess.h" />
+    <ClInclude Include="IndexFormula.h" />
+    <ClInclude Include="Stock.h" />
     <ClInclude Include="StockIndex.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

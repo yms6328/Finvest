@@ -5,15 +5,13 @@
     * jag9123@gmail.com
 */
 
-
 #include <iostream>
-#include "DBHelper.h"
-#include "IndexFomular.h"
-
-#define LINE "--------------------------------------------------"
-
+#include <string>
+#include "DBAccess.h"
+#include "StockIndex.h"
 using namespace std;
 
+<<<<<<< HEAD
 void SelectMenu(int menunum);
 void SetMainStock();
 DBHelper db_helper;
@@ -162,10 +160,13 @@ void SelectMenu(int menunum)
 
 void SetMainStock()
 {
+=======
+int main()
+{
+    StockIndex st_index;
+>>>>>>> 60ce48c255d0ca895e7b412bbeeb0c830dcfc939
     string name;
-
-    cout << "enter the stock name: ";
-    cin >> name;
-    db_helper.SetStock(name);
-    cout << "You choose the " << name << "(" << db_helper.GetStockCode() << ")" << endl;
+    st_index.init();
+    st_index.GetEMA(5);
+    return 0;
 }

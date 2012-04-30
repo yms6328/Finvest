@@ -37,7 +37,7 @@ void DBHelper::DBConnect()
 
 void DBHelper::SetStock(const string& stock_name)
 {
-    sql_manager.SetTestStock(stock_name);
+    sql_manager.SetStock(stock_name);
 }
 
 string DBHelper::GetStockCode()
@@ -47,12 +47,18 @@ string DBHelper::GetStockCode()
 
 int DBHelper::GetClose()
 {
+    cout << "Get Close() " << endl;
     return sql_manager.GetTodayClose();
 }
 
-int DBHelper::GetPrevClose(int day)
+int DBHelper::GetPrevClose(int nday)
 {
-    return sql_manager.GetBeforeClose(day);
+    return sql_manager.GetPrevClose(nday);
+}
+
+int* DBHelper::GetPeriodClose(int nday)
+{
+    return sql_manager.GetPeriodClose(nday);
 }
 
 int DBHelper::GetOpen()
@@ -60,9 +66,14 @@ int DBHelper::GetOpen()
     return sql_manager.GetTodayOpen();
 }
 
-int DBHelper::GetPrevOpen(int day)
+int DBHelper::GetPrevOpen(int nday)
 {
-    return sql_manager.GetBeforeOpen(day);
+    return sql_manager.GetPrevOpen(nday);
+}
+
+int* DBHelper::GetPeriodOpen(int nday)
+{
+    return sql_manager.GetPeriodOpen(nday);
 }
 
 int DBHelper::GetHigh()
@@ -70,9 +81,14 @@ int DBHelper::GetHigh()
     return sql_manager.GetTodayHigh();
 }
 
-int DBHelper::GetPrevHigh(int day)
+int DBHelper::GetPrevHigh(int nday)
 {
-    return sql_manager.GetBeforeHigh(day);
+    return sql_manager.GetPrevHigh(nday);
+}
+
+int* DBHelper::GetPeriodHigh(int nday)
+{
+    return sql_manager.GetPeriodHigh(nday);
 }
 
 int DBHelper::GetLow()
@@ -80,7 +96,12 @@ int DBHelper::GetLow()
     return sql_manager.GetTodayLow();
 }
 
-int DBHelper::GetPrevLow(int day)
+int DBHelper::GetPrevLow(int nday)
 {
-    return sql_manager.GetBeforeLow(day);
+    return sql_manager.GetPrevLow(nday);
+}
+
+int* DBHelper::GetPeriodLow(int nday)
+{
+    return sql_manager.GetPeriodLow(nday);
 }
