@@ -17,7 +17,7 @@ using namespace std;
 void SelectMenu(int menunum);
 void SetMainStock();
 DBHelper db_helper;
-
+IndexFomular index_f;
 
 int main()
 {
@@ -155,7 +155,7 @@ void SelectMenu(int menunum)
 
 		case 10:
 			cout <<"10. sonar"<<endl;
-			cout << IndexFomular.getSONARValue() << endl;
+			cout << index_f.getSONARValue() << endl;
 		break;
     }
 }

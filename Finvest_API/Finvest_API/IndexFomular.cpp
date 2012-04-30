@@ -12,16 +12,18 @@
 DBHelper dbhelper;
 
 
-void IndexFomular::getSC_KValue(){ //n기간동안 하는거 포인터 해결 어떻게 하는지 ㅠㅠㅠ
+int IndexFomular::getSC_KValue(){ //n기간동안 하는거 포인터 해결 어떻게 하는지 ㅠㅠㅠ
 
 	
 	int sc_k = ((dbhelper.GetClose() - dbhelper.GetPeriodLow())/(dbhelper.GetPeriodHigh()- dbhelper.GetPeriodLow()))*100;
+	
+	return sc_k;
 	
 
 	
 }
 
-void IndexFomular::getSC_DValue(){
+int IndexFomular::getSC_DValue(){
 
 	int sc_d = 0;
 
@@ -31,6 +33,8 @@ void IndexFomular::getSC_DValue(){
 		
 	}
 	sc_d = sc_d/3;
+
+	return sc_d;
 }
 
 
@@ -38,7 +42,7 @@ void IndexFomular::getSC_DValue(){
 
 
 
-void IndexFomular::getCCIValue(){
+int IndexFomular::getCCIValue(){
 	
 	int M = (dbhelper.GetHigh() + dbhelper.GetLow() + dbhelper.GetClose()) / 3;
 	int m;
@@ -58,16 +62,20 @@ void IndexFomular::getCCIValue(){
 
 	int cci = (M-m)/(d*0.015);
 
+	return cci;
+
 } 
 
-void IndexFomular::getSONARValue()  //day는 10일을 추천
+int IndexFomular::getSONARValue()  //day는 10일을 추천
 
 {
 	int sonar = (dbhelper.GetClose() - dbhelper.GetPrevClose(10))/dbhelper.GetPrevClose(10);
+	
+	return sonar;
 
 }
 
-void IndexFomular::getSONARAve() //기간은 5일을 추천
+int IndexFomular::getSONARAve() //기간은 5일을 추천
 {
 	int sonarave = 0;
 
@@ -77,5 +85,7 @@ void IndexFomular::getSONARAve() //기간은 5일을 추천
 	}
 
 	sonarave = sonarave/5;
+
+	return sonarave;
 
 }

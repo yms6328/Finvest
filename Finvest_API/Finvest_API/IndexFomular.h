@@ -5,13 +5,13 @@
 class IndexFomular
 {
  public:
-	void getSC_KValue();
-	void getSC_DValue();
+	int getSC_KValue();
+	int getSC_DValue();
 
-	void getSONARValue();
-	void getSONARAve();
+	int getSONARValue();
+	int getSONARAve();
 
-	void getCCIValue();
+	int getCCIValue();
 };
 
 #endif;
