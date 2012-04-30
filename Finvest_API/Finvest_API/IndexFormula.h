@@ -22,7 +22,7 @@ class IndexFormula
     	int GetCCIValue();
 
     /* s -- hyeyeng.ahn - 2012. 04. 29 */
-        int GetEMA(int day); // 지수이동평균
+        int GetEMA(int day, int* data); // 지수이동평균
 };
 
 #endif

@@ -9,9 +9,17 @@ class StockIndex
     public:
         void init();
 
-        bool CCI();
-        bool Sonar();
-        bool Sc();
+        bool RSI(); // RSI
+        bool MACD(); // MACD
+        bool Stochastics(); // 스토캐스틱
+        bool RateOfChange(); // 변화율
+        bool PivotPoint(); // Pivot Point 
+        bool SonarMomentum(); // Sonar Momentum
+        bool TRIX(); // TRIX
+        bool CCI(); // CCI
+        bool VR(); // VR
+        bool RCI(); // RCI
+        bool Disparity(); // 이격도
         
         int GetEMA(int day);
 };

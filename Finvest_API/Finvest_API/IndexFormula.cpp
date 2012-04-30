@@ -20,64 +20,54 @@ void IndexFormula::init()
     }
 }
 
-//int IndexFormula::GetRSIValue()
-//{
-//    //RSI = {(14일간 상승폭 합계) / (14일간 상승폭 합계 + 14일간 하락폭 합계) } * 10
-//}
+int IndexFormula::GetRSIValue()
+{
+    //RSI = {(14일간 상승폭 합계) / (14일간 상승폭 합계 + 14일간 하락폭 합계) } * 10
+    return 0;
+}
 
+/* s --hyeyeng.ahn - 2012. 04. 29 */
 int IndexFormula::GetRatioValue() 
 {
-    // 변화율 = {(오늘종가 - 12일전 종가) / 12일전 종가 } * 100
-    int ratio;
+    /*
+        변화율
+        마이너스 영역에서 0선을 통과하여 플러스로 가면 매수
+        플러스 영역에서 0선을 통과하여 마이너스로 가면 매도
+        변화율 = {(오늘종가 - 12일전 종가) / 12일전 종가 } * 100
+    */
 
-    /* s --hyeyeng.ahn - 2012. 04. 29 */
+    int ratio;
     int t_close = db_acc.GetTodayClose();
     int p_close = db_acc.GetPrevClose(12);
 
     ratio = ((t_close - p_close) / p_close) * 100;
-    /* e -- hyeyeng.ahn - 2012. 04. 29 */
     return ratio;
 }
+/* e -- hyeyeng.ahn - 2012. 04. 29 */
 
-int IndexFormula::GetPivotValue()
-{
-    //pivot point = (전일의 고가 + 전일의 저가 + 전일의 종가) / 3
-    int y_high = db_acc.GetPrevHigh(1);
-    int y_low = db_acc.GetPrevLow(1);
-    int y_close = db_acc.GetPrevClose(1);
- 
-    std::cout << "test: " << y_high << std::endl;
-    std::cout << "test: " << y_low << std::endl;
-    std::cout << "test: " << y_close << std::endl;
-
-    int ppoint = (y_high + y_low + y_close) / 3;
-
-    /* s --hyeyeng.ahn - 2012. 04. 29 */
-    // what res, sup means?
-    //int res1 = (2 * ppoint) - y_low;
-    //int sup1 = (2 * ppoint) - y_high;
-    //int res2 = (ppoint - sup1) + res1;
-    //int sup2 = ppoint - (res1 - sup1);
-
-    return ppoint;
-    /* e -- hyeyeng.ahn - 2012. 04. 29 */
-}
-
-void IndexFormula::GetSC_KValue()
-{ 
-    //n기간동안 하는거 포인터 해결 어떻게 하는지 ㅠㅠㅠ	
-    //int sc_k = ((db_acc.GetClose() - db_acc.GetPeriodLow())/(db_acc.GetPeriodHigh()- dbhelper.GetPeriodLow()))*100;
-}
-
-void IndexFormula::GetSC_DValue()
-{
-    int sc_d = 0;
-    for(int i=0; i<3; i++)
-    {
-        //sc_d = ((db_acc.GetClose() - dbhelper.GetPeriodLow())/(dbhelper.GetPeriodHigh() - dbhelper.GetPeriodLow()))*100 + sc_d;		
-    }
-    sc_d = sc_d/3;
-}
+///* s -- hyeunjeong.song */
+//int IndexFormula::GetPivotValue()
+//{
+//    
+//    //pivot point = (전일의 고가 + 전일의 저가 + 전일의 종가) / 3
+//    int y_high = db_acc.GetPrevHigh(1);
+//    int y_low = db_acc.GetPrevLow(1);
+//    int y_close = db_acc.GetPrevClose(1);
+//
+//    int ppoint = (y_high + y_low + y_close) / 3;
+//
+//     /*
+//        res: 저항선
+//        sup: 지지선
+//    */
+//    int res1 = (2 * ppoint) - y_low;
+//    int sup1 = (2 * ppoint) - y_high;
+//    int res2 = (ppoint - sup1) + res1;
+//    int sup2 = ppoint - (res1 - sup1);
+//
+//    return ppoint;
+//}
+///* e -- hyeunjeong.song */
 
 /* s -- hyeyeng.ahn - 2012. 04. 29 */
 int IndexFormula::GetCCIValue()
@@ -117,7 +107,9 @@ int IndexFormula::GetCCIValue()
     
     return n_cci;
 }
+/* e -- hyeyeng.ahn - 2012. 04. 29 */
 
+/* s -- hyeyeng.ahn - 2012. 04. 30 */
 void IndexFormula::GetSonarValue()
 {
     /*
@@ -125,21 +117,18 @@ void IndexFormula::GetSonarValue()
         sonar momentum signal = sonar momentum의 m일 지수이동평균
         m = 5, n = 10 추천
      */
-
-    //int sonar_m;
+     int today_ema = GetEMA(1, db_acc.GetClose(1));
+     int nday_ema = GetEMA(10, db_acc.GetClose(10));
+     int sonar_m_signal[5];
+     /*for(int cnt = 0; cnt < 5; cnt++)
+     {
+        sonar_m_signal[cnt] = 
+     }
+     sonar momentum을 n일동안 구해야 함? -> 금일 지수 이동 평균 5번.. 날짜가 5번 바뀌어야함;;
+     */
 }
-//
-//void IndexFormula::GetSonarAve()
-//{
-//    int Sonarave = 0;
-//    for(int i=0; i<5; i++)
-//    {
-//        Sonarave = ((db_acc.GetClose() - db_acc.GetPrevClose(10)) / db_acc.GetPrevClose(10))+Sonarave;
-//    }
-//    Sonarave = Sonarave/5;
-//}
 
-int IndexFormula::GetEMA(int day)
+int IndexFormula::GetEMA(int day, int* data)
 {
     /*
         지수이동평균 exponential moving average
@@ -149,25 +138,39 @@ int IndexFormula::GetEMA(int day)
     */
     int cnt, sum = 0;
 
-    int* close = new int[day];
     // 평활계수
-    int k = 0;
-    printf("%d \t", day);
-    printf("%d \t", day+1);
-    printf("%d \t", (2 / 6));
-    printf("%f \n", (2 / (day+1)));
-    float ma = 0;
+    float k = 2 / (float)(day + 1);
+    float ma;
 
-    // n일간의 종가
-    close = db_acc.GetClose(day);
-    ma = close[0];
-    for(cnt = 1; cnt < day; cnt++)
+    ma = data[0];
+    if(day > 1)
     {
-        printf("close: %d \n", close[cnt]);
-        printf("k: %f", k);
-        ma = (close[cnt] * k) + (ma * (1-k));
-        printf("ma: %d \n", ma);
+        for(cnt = 1; cnt < day; cnt++)
+        {
+            printf("ma: %f\n", ma);
+            printf("close: %d \n", data[cnt]);
+            printf("k: %f\n", k);
+            printf("close*k: %f \n", (data[cnt] * k));
+            printf("ma*(1-k): %f \n", (ma * (1-k)));
+
+            float ck = data[cnt] * k;
+            float mk = ma * (1-k);
+            ma = ck + mk;
+            printf("ck: %f \n", ck);
+            printf("mk: %f \n", mk);
+            printf("ma: %d \n", (int)ma);
+        }
+    }
+    else if(day == 1)
+    {
+        float ck = data[0] * k;
+        float mk = ma * (1-k);
+        ma = ck + mk;
+        printf("ck: %f \n", ck);
+        printf("mk: %f \n", mk);
+        printf("ma: %d \n", (int)ma);
     }
 
     return (int) ma;
 }
+/* e -- hyeyeng.ahn - 2012. 04. 30 */

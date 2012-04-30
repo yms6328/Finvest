@@ -93,7 +93,6 @@ bool DBAccess::LoadData(const std::string& stock_code)
                 gStock_memory[count].m_nHigh = atoi(m_row[3]);
                 gStock_memory[count].m_nLow = atoi(m_row[4]);
                 gStock_memory[count].m_nClose = atoi(m_row[5]);
-                printf("open: %d \n", gStock_memory[count].m_nClose);
                 gStock_memory[count].m_nDiff = atoi(m_row[6]);
                 gStock_memory[count].m_dVolume = atof(m_row[7]);
                 gStock_memory[count].m_fScale = (float)atof(m_row[8]);
