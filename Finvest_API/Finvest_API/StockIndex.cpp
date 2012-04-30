@@ -46,6 +46,13 @@
 //	{
 //		return 매도flag;
 //	}
-//
+/*void StockIndex::NCOFlag(){
+if(getNCOValue() > 0){
+ return 매수 flag;
+}
+else if(getNCOValue() < 0){
+return 매도 flag;
+}
+} */
 //
 //}
