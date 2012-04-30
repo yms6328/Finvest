@@ -20,5 +20,8 @@ class StockIndex
         bool VR(); // VR
         bool RCI(); // RCI
         bool Disparity(); // ¿Ã∞›µµ
+        bool NCO(); //NCO
+        bool PriceOS(); //Price Oscillator
+        bool ADLine(); //ADLine
 };
 #endif;

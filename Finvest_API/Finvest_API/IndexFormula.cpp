@@ -222,3 +222,50 @@ int IndexFormula::GetEMA(int day, int* data)
     return (int) ma;
 }
 /* e -- hyeyeng.ahn - 2012. 04. 30 */
+
+/* s -- hyojin.kim - 2012. 05. 01 */
+int IndexFormula::GetNCOValue()
+{
+   /*
+        momentum = (최근종가 - 12일전 종가)
+   */
+    int momentum = 0;
+    momentum = (db_acc.GetTodayClose() - db_acc.GetPrevClose(12));
+    return (int) momentum;
+}
+
+int IndexFormula::GetPriceOSValue(){
+
+    /*
+        priceoscillator = ((ma(종가, 단기) - ma(종가, 장기)) / ma (종가, 단기)) * 100
+        ma(단순이동평균) = (n일동안의 종가의 합)/ n일
+    */
+    int pos = 0;//price oscillator
+    int mas[6]; //단기이동평균
+    int mal[75]; //장기이동평균
+    int ms, ml, cnt; //cnt : for loop index
+    int ps_sum = 0; //단기 종가의 합
+    int pl_sum = 0; //장기 종가의 합
+    int* s_close = db_acc.GetClose(6); //6일동안의 종가
+    int* l_close = db_acc.GetClose(75); //75일동안의 종가
+
+    for(cnt = 0; cnt < 6; cnt++)
+    {
+        mas[cnt] = (s_close[cnt]);
+        ps_sum += mas[cnt];
+    }
+    ms = ps_sum / 6;
+
+    for(cnt = 0; cnt < 75; cnt++){
+        mal[cnt] = (l_close[cnt]);
+        pl_sum += mal[cnt];
+    }
+    ml = pl_sum/ 75;
+
+    pos = ((ms - ml) / ms) * 100;
+
+    return pos;
+}
+
+
+/* e -- hyojin.kim - 2012. 05. 01 */

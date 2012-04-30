@@ -20,6 +20,9 @@ class IndexFormula
         void GetVRValue();
         void GetRCIValue();
         void GetDisparityValue();
+        int GetNCOValue();
+        int GetPriceOSValue();
+        int GetADLineValue();
 
     /* s -- hyeyeng.ahn - 2012. 04. 29 */
         int GetEMA(int day, int* data); // 지수이동평균
