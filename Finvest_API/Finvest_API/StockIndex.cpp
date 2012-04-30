@@ -31,6 +31,49 @@ void StockIndex::init()
         bool Disparity(); // 이격도
 */
 
+bool StockIndex::RSI()
+{
+    return true;
+}
+
+bool StockIndex::MACD()
+{
+    return true;
+}
+
+bool Stochastics()
+{
+    return true;
+}
+
+bool RateOfChange()
+{
+    return true;
+}
+
+/*
+    Pivot Point
+    보류
+*/
+
+bool StockIndex::SonarMomentum()
+{
+    // formula.GetSonarValue()
+    if(34 > 0)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+bool StockIndex::TRIX()
+{
+    return true;
+}
+
 bool StockIndex::CCI()
 {
     bool buying_flag;
@@ -46,31 +89,21 @@ bool StockIndex::CCI()
     return buying_flag;
 }
 
-/*
-    Pivot Point
-    보류
-*/
-
-bool StockIndex::Sonar()
+bool StockIndex::VR()
 {
-    // formula.GetSonarValue()
-    if(34 > 0)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+    return true;
 }
 
+bool StockIndex::RCI()
+{
+    return true;
+}
 
-
+bool StockIndex::Disparity()
+{
+    return true;
+}
 
 /*
     private
 */
-int StockIndex::GetEMA(int day)
-{
-    return formula.GetEMA(day);
-}

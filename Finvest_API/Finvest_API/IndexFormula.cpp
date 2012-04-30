@@ -9,6 +9,21 @@
 #include "DBAccess.h"
 #include "IndexFormula.h"
 
+/*
+    Index List
+        bool RSI(); // RSI
+        bool MACD(); // MACD
+        bool Stochastics(); // 스토캐스틱
+        bool RateOfChange(); // 변화율
+        bool PivotPoint(); // Pivot Point 
+        bool SonarMomentum(); // Sonar Momentum
+        bool TRIX(); // TRIX
+        bool CCI(); // CCI
+        bool VR(); // VR
+        bool RCI(); // RCI
+        bool Disparity(); // 이격도
+*/
+
 void IndexFormula::init()
 {
     printf("Enter the stock name: ");
@@ -24,6 +39,39 @@ int IndexFormula::GetRSIValue()
 {
     //RSI = {(14일간 상승폭 합계) / (14일간 상승폭 합계 + 14일간 하락폭 합계) } * 10
     return 0;
+}
+
+/* s :: hyeyeong.ahn - 2012. 04. 30 */
+int IndexFormula::GetStochasticValue()
+{
+    /*
+        Stochastic
+        (종가 - 5일동안의 최저가) / (5일동안의 최고가 - 5일동안의 최저가)
+    */
+    int st_k;
+    int* low_arr = db_acc.GetLow(5);
+    int* high_arr = db_acc.GetHigh(5);
+    int min_low, max_high;
+    int close = db_acc.GetTodayClose();
+
+    min_low = low_arr[0];
+    max_high = high_arr[0];
+
+    for(int cnt = 1; cnt < 5; cnt++)
+    {
+        if(low_arr[cnt] < min_low)
+        {
+            min_low = low_arr[cnt];
+        }
+
+        if(high_arr[cnt] > max_high)
+        {
+            max_high = high_arr[cnt];
+        }
+    }
+
+    st_k = (close - min_low) / (max_high - min_low);
+    return st_k;
 }
 
 /* s --hyeyeng.ahn - 2012. 04. 29 */
@@ -46,27 +94,27 @@ int IndexFormula::GetRatioValue()
 /* e -- hyeyeng.ahn - 2012. 04. 29 */
 
 ///* s -- hyeunjeong.song */
-//int IndexFormula::GetPivotValue()
-//{
-//    
-//    //pivot point = (전일의 고가 + 전일의 저가 + 전일의 종가) / 3
-//    int y_high = db_acc.GetPrevHigh(1);
-//    int y_low = db_acc.GetPrevLow(1);
-//    int y_close = db_acc.GetPrevClose(1);
-//
-//    int ppoint = (y_high + y_low + y_close) / 3;
-//
-//     /*
-//        res: 저항선
-//        sup: 지지선
-//    */
-//    int res1 = (2 * ppoint) - y_low;
-//    int sup1 = (2 * ppoint) - y_high;
-//    int res2 = (ppoint - sup1) + res1;
-//    int sup2 = ppoint - (res1 - sup1);
-//
-//    return ppoint;
-//}
+int IndexFormula::GetPivotValue()
+{
+    
+    //pivot point = (전일의 고가 + 전일의 저가 + 전일의 종가) / 3
+    int y_high = db_acc.GetPrevHigh(1);
+    int y_low = db_acc.GetPrevLow(1);
+    int y_close = db_acc.GetPrevClose(1);
+
+    int ppoint = (y_high + y_low + y_close) / 3;
+
+     /*
+        res: 저항선
+        sup: 지지선
+    */
+    int res1 = (2 * ppoint) - y_low;
+    int sup1 = (2 * ppoint) - y_high;
+    int res2 = (ppoint - sup1) + res1;
+    int sup2 = ppoint - (res1 - sup1);
+
+    return ppoint;
+}
 ///* e -- hyeunjeong.song */
 
 /* s -- hyeyeng.ahn - 2012. 04. 29 */
@@ -119,7 +167,7 @@ void IndexFormula::GetSonarValue()
      */
      int today_ema = GetEMA(1, db_acc.GetClose(1));
      int nday_ema = GetEMA(10, db_acc.GetClose(10));
-     int sonar_m_signal[5];
+     //int sonar_m_signal[5];
      /*for(int cnt = 0; cnt < 5; cnt++)
      {
         sonar_m_signal[cnt] = 

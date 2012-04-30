@@ -20,7 +20,5 @@ class StockIndex
         bool VR(); // VR
         bool RCI(); // RCI
         bool Disparity(); // ¿Ã∞›µµ
-        
-        int GetEMA(int day);
 };
 #endif;

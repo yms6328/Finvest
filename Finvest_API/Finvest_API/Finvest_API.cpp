@@ -167,6 +167,5 @@ int main()
 >>>>>>> 60ce48c255d0ca895e7b412bbeeb0c830dcfc939
     string name;
     st_index.init();
-    st_index.GetEMA(5);
     return 0;
 }
