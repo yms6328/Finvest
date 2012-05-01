@@ -15,7 +15,6 @@ void StockIndex::init()
     formula.init();
 }
 
-
 /*
     Index List
         bool RSI(); // RSI

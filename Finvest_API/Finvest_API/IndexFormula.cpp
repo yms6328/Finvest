@@ -75,26 +75,6 @@ int IndexFormula::GetMACDValue()
 
 }
 
-int IndexFormula::GetSignalValue()
-{
-	int* macd_arr; //9일동안의 macd지수이동평균 - 9일동안의 macd값을 배열의 넣는것을 못했음~~
-	int macd_sum, i;
-	int signal_line;
-
-	for(i=0; i<9; i++)
-	{
-		macd_sum += macd_arr[i];
-	}
-
-	signal_line = macd_sum/9; //시그널 곡선
-
-	return signal_line;
-
-}
-
-
-
-
 int IndexFormula::GetRSIValue()
 {
     //RSI = {(14일간 상승폭 합계) / (14일간 상승폭 합계 + 14일간 하락폭 합계) } * 10
@@ -153,7 +133,7 @@ int IndexFormula::GetRatioValue()
 }
 /* e -- hyeyeng.ahn - 2012. 04. 29 */
 
-///* s -- hyojin.kim * - 2012. 05. 01 */
+/* s -- hyojin.kim * - 2012. 05. 01 */
 int IndexFormula::GetPivotValue()
 {
     
@@ -278,62 +258,7 @@ void IndexFormula::GetSonarValue()
 
 	int EMA1 = IndexFormula::GetEMA(15, );
 	int EMA2 = 
-
-
 }*/
-
-
-
-
-
-
-
-int IndexFormula::GetEMA(int day, int* data)
-{
-    /*
-        지수이동평균 exponential moving average
-        1일: 11,200
-        2일: 10,800 * 0.33 + 11,200 * 0.67 = 11,068
-        3일: (종가 * k) + (전날 지수이동평균(11,068) * (1-k)) = 3일째 지수이동평균
-    */
-    int cnt, sum = 0;
-
-    // 평활계수
-    float k = 2 / (float)(day + 1);
-    float ma;
-
-    ma = data[0];
-    if(day > 1)
-    {
-        for(cnt = 1; cnt < day; cnt++)
-        {
-            printf("ma: %f\n", ma);
-            printf("close: %d \n", data[cnt]);
-            printf("k: %f\n", k);
-            printf("close*k: %f \n", (data[cnt] * k));
-            printf("ma*(1-k): %f \n", (ma * (1-k)));
-
-            float ck = data[cnt] * k;
-            float mk = ma * (1-k);
-            ma = ck + mk;
-            printf("ck: %f \n", ck);
-            printf("mk: %f \n", mk);
-            printf("ma: %d \n", (int)ma);
-        }
-    }
-    else if(day == 1)
-    {
-        float ck = data[0] * k;
-        float mk = ma * (1-k);
-        ma = ck + mk;
-        printf("ck: %f \n", ck);
-        printf("mk: %f \n", mk);
-        printf("ma: %d \n", (int)ma);
-    }
-
-    return (int) ma;
-}
-/* e -- hyeyeng.ahn - 2012. 04. 30 */
 
 /* s -- hyojin.kim - 2012. 05. 01 */
 int IndexFormula::GetNCOValue()
@@ -421,3 +346,60 @@ int IndexFormula::GetPrevADLineValue(){
     return prevaccdist;
 }
 /* e -- hyojin.kim - 2012. 05. 01 */
+
+
+
+
+/*
+    private functions
+*/
+int IndexFormula::GetSignalValue()
+{
+	int* macd_arr; //9일동안의 macd지수이동평균 - 9일동안의 macd값을 배열의 넣는것을 못했음~~
+	int macd_sum, i;
+	int signal_line;
+
+	for(i=0; i<9; i++)
+	{
+		macd_sum += macd_arr[i];
+	}
+
+	signal_line = macd_sum/9; //시그널 곡선
+
+	return signal_line;
+}
+
+int IndexFormula::GetEMA(int day, int* data)
+{
+    /*
+        지수이동평균 exponential moving average
+        1일: 11,200
+        2일: 10,800 * 0.33 + 11,200 * 0.67 = 11,068
+        3일: (종가 * k) + (전날 지수이동평균(11,068) * (1-k)) = 3일째 지수이동평균
+    */
+    int cnt, sum = 0;
+
+    // 평활계수
+    float k = 2 / (float)(day + 1);
+    float ma;
+
+    ma = data[0];
+    if(day > 1)
+    {
+        for(cnt = 1; cnt < day; cnt++)
+        {
+            float ck = data[cnt] * k;
+            float mk = ma * (1-k);
+            ma = ck + mk;
+        }
+    }
+    else if(day == 1)
+    {
+        float ck = data[0] * k;
+        float mk = ma * (1-k);
+        ma = ck + mk;
+    }
+
+    return (int) ma;
+}
+/* e -- hyeyeng.ahn - 2012. 04. 30 */
