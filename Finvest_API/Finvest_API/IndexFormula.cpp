@@ -37,6 +37,17 @@ void IndexFormula::init()
     }
 }
 
+<<<<<<< HEAD
+=======
+
+ void GetDisparityValue()
+ {
+	 //20일 이격도
+	// int DV20= db_acc.GetClose();
+ }
+
+
+>>>>>>> d8617164ebcc120e0f134c1ad5862fa6a125a7b3
 int IndexFormula::GetMACDValue()
 {
 
