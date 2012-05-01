@@ -11,7 +11,7 @@
 #include "StockIndex.h"
 using namespace std;
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
 void SelectMenu(int menunum);
 void SetMainStock();
 DBHelper db_helper;
@@ -21,7 +21,7 @@ int main()
 {
     int menu_num = 0;
 
-    cout << LINE << endl;
+    //cout << LINE << endl;
     cout << "Database API Test Program" << endl;
     cout << LINE << endl;
     SetMainStock();
@@ -160,11 +160,11 @@ void SelectMenu(int menunum)
 
 void SetMainStock()
 {
-=======
+//=======
 int main()
 {
     StockIndex st_index;
->>>>>>> 60ce48c255d0ca895e7b412bbeeb0c830dcfc939
+//>>>>>>> 60ce48c255d0ca895e7b412bbeeb0c830dcfc939
     string name;
     st_index.init();
     return 0;

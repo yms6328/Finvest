@@ -22,6 +22,9 @@
         bool VR(); // VR
         bool RCI(); // RCI
         bool Disparity(); // 이격도
+        bool NCO(); //NCO
+        bool PriceOS(); //Price Oscillator 
+        bool ADLine(); //ADLine 
 */
 
 void IndexFormula::init()
@@ -93,7 +96,7 @@ int IndexFormula::GetRatioValue()
 }
 /* e -- hyeyeng.ahn - 2012. 04. 29 */
 
-///* s -- hyeunjeong.song */
+///* s -- hyojin.kim * - 2012. 05. 01 */
 int IndexFormula::GetPivotValue()
 {
     
@@ -104,18 +107,48 @@ int IndexFormula::GetPivotValue()
 
     int ppoint = (y_high + y_low + y_close) / 3;
 
-     /*
+    /*
         res: 저항선
         sup: 지지선
     */
-    int res1 = (2 * ppoint) - y_low;
-    int sup1 = (2 * ppoint) - y_high;
-    int res2 = (ppoint - sup1) + res1;
-    int sup2 = ppoint - (res1 - sup1);
+   // int res1 = (2 * ppoint) - y_low;
+   // int sup1 = (2 * ppoint) - y_high;
+  //  int res2 = (ppoint - sup1) + res1;
+    //int sup2 = ppoint - (res1 - sup1);
 
     return ppoint;
 }
-///* e -- hyeunjeong.song */
+
+int IndexFormula::GetTodayCloseValue()
+{
+    int tclose = 0; //오늘의 종가
+
+    tclose = db_acc.GetTodayClose();
+
+    return tclose;
+}
+
+/*int IndexFormula::GetPivotResValue1()
+{
+    int res1 = 0; //1차 저항선
+    int y_low = db_acc.GetPrevLow(1);
+
+    res1 = (2 * GetPivotValue()) - y_low;
+
+    return res1;
+}
+
+int IndexFormula::GetPivotResValue2()
+{
+    int sup1 = 0; //1차 지지선
+    int y_high = db_acc.GetPrevHigh(1);
+
+    sup1 = (2 * GetPivotValue()) - y_high;
+
+    return sup1;
+}*/
+
+///* e -- hyojin.kim  http://blog.daum.net/tax8282kds/15848281 */
 
 /* s -- hyeyeng.ahn - 2012. 04. 29 */
 int IndexFormula::GetCCIValue()
@@ -267,5 +300,45 @@ int IndexFormula::GetPriceOSValue(){
     return pos;
 }
 
+int IndexFormula::GetTADLineValue(){
 
+	/*
+	AccDist = ((((종가 - 저가) - (고가 - 저가)) / (고가 - 저가)) * 거래량) + 전일AccDist
+	*/
+
+    int taccdist; //당일 accdist
+    int prevaccdist;
+    int tclose, tlow, thigh = 0; //오늘의 종가, 저가, 고가
+    int volume; //거래량
+
+    tclose = db_acc.GetTodayClose();
+    tlow = db_acc.GetTodayLow();
+    thigh = db_acc.GetTodayHigh();
+    volume = db_acc.GetTodayVolume();
+
+    taccdist = ((((tclose - tlow) - (thigh - tlow)) / (thigh - tlow)) * volume) + GetPrevADLineValue();
+
+    return taccdist;
+}
+
+int IndexFormula::GetPrevADLineValue(){
+
+	/*
+	AccDist = ((((종가 - 저가) - (고가 - 저가)) / (고가 - 저가)) * 거래량) + 전일AccDist
+	*/
+   
+    int prevaccdist; //전일 accdist
+    int prevclose, prevlow, prevhigh = 0; //전날의 종가, 저가, 고가
+    int prevvolume; //거래량
+
+    prevclose = db_acc.GetPrevClose(1);
+    prevlow = db_acc.GetPrevLow(1);
+    prevhigh = db_acc.GetPrevHigh(1);
+    prevvolume = db_acc.GetPrevVolume(1);
+
+    prevaccdist = ((((prevclose - prevlow) - (prevhigh - prevlow)) / (prevhigh - prevlow)) * prevvolume) + GetPrevADLineValue();
+    //근데 여기서 GetPrevADLineValue를 또 사용해서 그 전 날의 accdist값을 불러주어야함. 이게 가능한지 알아야함.
+
+    return prevaccdist;
+}
 /* e -- hyojin.kim - 2012. 05. 01 */
