@@ -12,14 +12,14 @@
 /*
     Index List
         bool RSI(); // RSI
-        bool MACD(); // MACD
-        bool Stochastics(); // 스토캐스틱
-        bool RateOfChange(); // 변화율
-        bool PivotPoint(); // Pivot Point 
-        bool SonarMomentum(); // Sonar Momentum
-        bool TRIX(); // TRIX
-        bool CCI(); // CCI
-        bool VR(); // VR
+        bool MACD(); // MACD =======보류
+        bool Stochastics(); // 스토캐스틱 ========완성
+        bool RateOfChange(); // 변화율 =========완성
+        bool PivotPoint(); // Pivot Point =========보류
+        bool SonarMomentum(); // Sonar Momentum =========보류
+        bool TRIX(); // TRIX ===========보류
+        bool CCI(); // CCI ==========완성
+        bool VR(); // VR 
         bool RCI(); // RCI
         bool Disparity(); // 이격도
         bool NCO(); //NCO
@@ -37,6 +37,63 @@ void IndexFormula::init()
         printf("Load data complete \n");
     }
 }
+
+
+ void GetDisparityValue()
+ {
+	 //20일 이격도
+	 int DV20= db_acc.GetClose();
+ }
+
+
+int IndexFormula::GetMACDValue()
+{
+
+	int short_sum, long_sum, i, j;
+	int short_average, long_average;
+	int macd_line;
+
+	int* short_average_arr = db_acc.GetClose(12); //단기이동평균선을 위한 12일동안의 종가
+	int* long_average_arr = db_acc.GetClose(26); //장기이동평균선을 위한 26일동안의 종가
+	
+	for(i=0; i<12; i++)
+	{
+		short_sum += short_average_arr[i];
+	}
+
+	for(j=0; j<26; j++)
+	{
+		long_sum += long_average_arr[j];
+	}
+
+	short_average = short_sum/12; //단기이동평균선
+	long_average = long_sum/26; //장기이동평균선
+
+	macd_line = short_average-long_average; //macd곡선
+
+	return macd_line;
+
+}
+
+int IndexFormula::GetSignalValue()
+{
+	int* macd_arr; //9일동안의 macd지수이동평균 - 9일동안의 macd값을 배열의 넣는것을 못했음~~
+	int macd_sum, i;
+	int signal_line;
+
+	for(i=0; i<9; i++)
+	{
+		macd_sum += macd_arr[i];
+	}
+
+	signal_line = macd_sum/9; //시그널 곡선
+
+	return signal_line;
+
+}
+
+
+
 
 int IndexFormula::GetRSIValue()
 {
@@ -208,6 +265,28 @@ void IndexFormula::GetSonarValue()
      sonar momentum을 n일동안 구해야 함? -> 금일 지수 이동 평균 5번.. 날짜가 5번 바뀌어야함;;
      */
 }
+
+
+/*void IndexFormula::GetTrixValue()
+{
+	//EMA1 = 종가의 N일 지수 이동평균(Exponential Moving Average)  
+	//EMA2 = EMA1의 N일 지수 이동평균  
+	//EMA3 = EMA2의 N일 지수 이동평균 
+	//TRIX = (금일의 EMA3값 - 전일의 EMA3값) / 전일의 EMA3값 TRIX Siganl 
+       // = TRIX의 M일 지수이동평균 
+	//TRIX signal = TRIX의 K일의 지수이동평균
+
+	int EMA1 = IndexFormula::GetEMA(15, );
+	int EMA2 = 
+
+
+}*/
+
+
+
+
+
+
 
 int IndexFormula::GetEMA(int day, int* data)
 {
