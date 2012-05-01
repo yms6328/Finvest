@@ -10,7 +10,7 @@ class IndexFormula
     public:
         void init();
         int GetRSIValue();
-        void GetMACDValue();
+        int GetMACDValue();
         int GetStochasticValue();
         int GetRatioValue();
 	    int GetPivotValue();
@@ -20,6 +20,10 @@ class IndexFormula
         void GetVRValue();
         void GetRCIValue();
         void GetDisparityValue();
+		void Get60DisparityValue();
+		void Get120DisparityValue();
+	private:
+		int GetSignalValue();
 
     /* s -- hyeyeng.ahn - 2012. 04. 29 */
         int GetEMA(int day, int* data); // 지수이동평균

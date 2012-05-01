@@ -38,6 +38,8 @@ bool StockIndex::RSI()
 
 bool StockIndex::MACD()
 {
+
+	
     return true;
 }
 
