@@ -24,9 +24,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Finvest_API.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="StockIndex.cpp">
       <Filter>소스 파일\Index</Filter>
     </ClCompile>
@@ -38,6 +35,9 @@
     </ClCompile>
     <ClCompile Include="IndexFormula.cpp">
       <Filter>소스 파일\Fomular</Filter>
+    </ClCompile>
+    <ClCompile Include="Finvest_API.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
