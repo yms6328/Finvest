@@ -215,7 +215,7 @@ int* DBAccess::GetLow(int nDay)
 int DBAccess::GetTodayDiff()
 {
     return gStock_memory[0].m_nDiff;
-}
+}//종가기준
 
 int DBAccess::GetPrevDiff(int nDay)
 {

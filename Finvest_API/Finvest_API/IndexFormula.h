@@ -13,13 +13,22 @@ class IndexFormula
         void GetMACDValue();
         int GetStochasticValue();
         int GetRatioValue();
+
 	    int GetPivotValue();
+        int GetTodayCloseValue();
+       // int GetPivotResValue1();
+       // int GetPivotResValue2();
+
         void GetSonarValue();
     	void GetTrixValue();
     	int GetCCIValue();
         void GetVRValue();
         void GetRCIValue();
         void GetDisparityValue();
+        int GetNCOValue();
+        int GetPriceOSValue();
+        int GetTADLineValue();
+        int GetPrevADLineValue();
 
     /* s -- hyeyeng.ahn - 2012. 04. 29 */
         int GetEMA(int day, int* data); // 지수이동평균

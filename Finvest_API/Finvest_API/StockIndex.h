@@ -10,15 +10,18 @@ class StockIndex
         void init();
 
         bool RSI(); // RSI
-        bool MACD(); // MACD
-        bool Stochastics(); // 스토캐스틱
-        bool RateOfChange(); // 변화율
-        bool PivotPoint(); // Pivot Point 
-        bool SonarMomentum(); // Sonar Momentum
-        bool TRIX(); // TRIX
-        bool CCI(); // CCI
+        bool MACD(); // MACD ==보류
+        bool Stochastics(); // 스토캐스틱 ==완성
+        bool RateOfChange(); // 변화율 ==완성
+        bool PivotPoint(); // Pivot Point ==보류 --> 우선완성
+        bool SonarMomentum(); // Sonar Momentum ==보류
+        bool TRIX(); // TRIX ==보류
+        bool CCI(); // CCI ==완성
         bool VR(); // VR
         bool RCI(); // RCI
         bool Disparity(); // 이격도
+        bool NCO(); //NCO ==완성
+        bool PriceOS(); //Price Oscillator ==완성
+        bool ADLine(); //ADLine ==완성
 };
 #endif;

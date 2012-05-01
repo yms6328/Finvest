@@ -29,6 +29,9 @@ void StockIndex::init()
         bool VR(); // VR
         bool RCI(); // RCI
         bool Disparity(); // 이격도
+        bool NCO();//NCO
+        bool PriceOS(); //Price Oscillator 
+        bool ADLine(); //ADLine 
 */
 
 bool StockIndex::RSI()
@@ -51,10 +54,20 @@ bool RateOfChange()
     return true;
 }
 
-/*
-    Pivot Point
-    보류
-*/
+ bool StockIndex::PivotPoint()
+ {
+     bool buying_flag;
+
+     if(formula.GetPivotValue() < formula.GetTodayCloseValue()){
+        return true;
+     }
+     else if(formula.GetPivotValue() > formula.GetTodayCloseValue()){
+        return false;
+     }
+ 
+     return buying_flag;
+ }
+
 
 bool StockIndex::SonarMomentum()
 {
@@ -102,6 +115,46 @@ bool StockIndex::RCI()
 bool StockIndex::Disparity()
 {
     return true;
+}
+
+bool StockIndex::NCO()
+{
+    bool buying_flag;
+
+    if(formula.GetNCOValue() > 0){
+     buying_flag = true;
+    }
+    else if(formula.GetNCOValue() < 0){
+     buying_flag = false;
+    }
+
+    return buying_flag;
+}
+
+bool StockIndex::PriceOS(){
+    bool buying_flag;
+
+    if(formula.GetPriceOSValue() >0){
+        buying_flag = true;
+    }
+    else if(formula.GetPriceOSValue() < 0){
+        buying_flag = false;
+    }
+
+    return buying_flag;
+}
+
+bool StockIndex::ADLine(){
+    bool buying_flag;
+
+    if(formula.GetTADLineValue() > formula.GetPrevADLineValue()){
+        buying_flag = true;
+    }
+    else if(formula.GetTADLineValue() < formula.GetPrevADLineValue()){
+        buying_flag = false;
+    }
+
+    return buying_flag;
 }
 
 /*
