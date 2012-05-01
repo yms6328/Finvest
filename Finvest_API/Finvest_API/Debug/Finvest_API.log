@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿빌드 시작: 5/2/2012 1:22:19 AM
      1>2 노드의 "C:\Users\hyeyeong\Finvest\Finvest_API\Finvest_API\Finvest_API.vcxproj" 프로젝트(build 대상)입니다.
      1>InitializeBuildStatus:
@@ -36,3 +37,25 @@
 빌드했습니다.
 
 경과 시간: 00:00:01.90
+=======
+﻿빌드 시작: 5/2/2012 1:20:56 AM
+     1>2 노드의 "C:\Users\김효진\Finvest\Finvest_API\Finvest_API\Finvest_API.vcxproj" 프로젝트(build 대상)입니다.
+     1>InitializeBuildStatus:
+         "AlwaysCreate"이(가) 지정되었기 때문에 "Debug\Finvest_API.unsuccessfulbuild"을(를) 만들고 있습니다.
+       ClCompile:
+         모든 출력이 최신 상태입니다.
+       ManifestResourceCompile:
+         모든 출력이 최신 상태입니다.
+       Link:
+         모든 출력이 최신 상태입니다.
+       Manifest:
+         모든 출력이 최신 상태입니다.
+       FinalizeBuildStatus:
+         "Debug\Finvest_API.unsuccessfulbuild" 파일을 삭제하고 있습니다.
+         "Debug\Finvest_API.lastbuildstate"에 연결(touching)하고 있습니다.
+     1>"C:\Users\김효진\Finvest\Finvest_API\Finvest_API\Finvest_API.vcxproj" 프로젝트를 빌드했습니다(build 대상).
+
+빌드했습니다.
+
+경과 시간: 00:00:00.11
+>>>>>>> a44d3ee5dd17adfb869d2d5de81420993cb7c084
