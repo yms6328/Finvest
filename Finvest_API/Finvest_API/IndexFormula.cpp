@@ -39,7 +39,7 @@ void IndexFormula::init()
  void GetDisparityValue()
  {
 	 //20일 이격도
-	 int DV20= db_acc.GetClose();
+	// int DV20= db_acc.GetClose();
  }
 
 
