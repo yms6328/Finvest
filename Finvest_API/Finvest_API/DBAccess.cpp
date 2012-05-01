@@ -20,7 +20,7 @@ const std::string T_TB("st_tbdata");
 DBAccess::DBAccess()
 {
     mysql_init(&m_connect);
-    str_today = "20050607";
+    str_today = "20100406";
     if(DBConnect())
     {
         printf("Success to connect DB \n");
@@ -66,7 +66,7 @@ bool DBAccess::LoadData(const std::string& stock_code)
     std::string query = "SELECT * FROM " + T_DL;
     query += " WHERE S_CODE = '" + stock_code + "' ";
     query += "AND S_DATE <= '" + str_today + "' ";
-    query += "ORDER BY S_DATE DESC LIMIT 50";
+    query += "ORDER BY S_DATE DESC LIMIT 80";
 
     if(mysql_query(&m_connect, query.c_str()))
     {
@@ -84,7 +84,7 @@ bool DBAccess::LoadData(const std::string& stock_code)
             while(m_row = mysql_fetch_row(m_result))
             {
                 /*
-                    row: 50
+                    row: 80
                     field: 19
                     m_row[0]: code
                 */
@@ -326,8 +326,9 @@ double DBAccess::GetVMA120()
 void DBAccess::ClearMemory()
 {
     // initialize memory
+    printf("init \n");
     int i;
-    for(i = 0; i < 50; i++)
+    for(i = 0; i < 80; i++)
     {
         gStock_memory[i].m_cDate = "";
         gStock_memory[i].m_nClose = 0;

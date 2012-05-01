@@ -35,60 +35,59 @@ void StockIndex::init()
 
 bool StockIndex::RSI()
 {
-    return true;
+    return false;
 }
 
 bool StockIndex::MACD()
 {
-    return true;
+    return false;
 }
 
-bool Stochastics()
+bool StockIndex::Stochastics()
 {
-    return true;
+    return false;
 }
 
-bool RateOfChange()
+bool StockIndex::RateOfChange()
 {
-    return true;
+    formula.GetRatioValue();
+    return false;
 }
 
- bool StockIndex::PivotPoint()
- {
-     bool buying_flag;
+bool StockIndex::PivotPoint()
+{
+    printf("Pivot \n");
+    bool buying_flag = false;;
+    printf("pivot value: %d \t", formula.GetPivotValue());
+    printf("pivot value: %d \n", formula.GetTodayCloseValue());
 
-     if(formula.GetPivotValue() < formula.GetTodayCloseValue()){
-        return true;
-     }
-     else if(formula.GetPivotValue() > formula.GetTodayCloseValue()){
-        return false;
-     }
- 
-     return buying_flag;
- }
+    if(formula.GetPivotValue() < formula.GetTodayCloseValue())
+    {
+       buying_flag = true;
+    }
+    else
+    {
+       buying_flag = false;
+    }
+    return buying_flag;
+}
 
 
 bool StockIndex::SonarMomentum()
 {
     // formula.GetSonarValue()
-    if(34 > 0)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+    return false;
 }
 
 bool StockIndex::TRIX()
 {
-    return true;
+    return false;
 }
 
 bool StockIndex::CCI()
 {
-    bool buying_flag;
+    printf("CCI value: %d \n", formula.GetCCIValue());
+    bool buying_flag = false;;
 
     if(formula.GetCCIValue() > 100)
     {
@@ -103,22 +102,23 @@ bool StockIndex::CCI()
 
 bool StockIndex::VR()
 {
-    return true;
+    return false;
 }
 
 bool StockIndex::RCI()
 {
-    return true;
+    return false;
 }
 
 bool StockIndex::Disparity()
 {
-    return true;
+    return false;
 }
 
 bool StockIndex::NCO()
 {
-    bool buying_flag;
+    printf("NCO value: %d \n", formula.GetNCOValue());
+    bool buying_flag = false;;
 
     if(formula.GetNCOValue() > 0){
      buying_flag = true;
@@ -130,21 +130,27 @@ bool StockIndex::NCO()
     return buying_flag;
 }
 
-bool StockIndex::PriceOS(){
-    bool buying_flag;
+bool StockIndex::PriceOS()
+{
+    printf("PriceOS value: %d \n", formula.GetPriceOSValue());
+    bool buying_flag = false;;
 
-    if(formula.GetPriceOSValue() >0){
+    if(formula.GetPriceOSValue() > 0)
+    {
         buying_flag = true;
     }
-    else if(formula.GetPriceOSValue() < 0){
+    else
+    {
         buying_flag = false;
     }
 
     return buying_flag;
 }
 
-bool StockIndex::ADLine(){
-    bool buying_flag;
+bool StockIndex::ADLine()
+{
+    printf("ADLine value: %d \t \%d \n", formula.GetTADLineValue(), formula.GetPrevADLineValue());
+    bool buying_flag = false;;
 
     if(formula.GetTADLineValue() > formula.GetPrevADLineValue()){
         buying_flag = true;

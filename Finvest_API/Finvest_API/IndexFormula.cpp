@@ -8,7 +8,6 @@
 #include <math.h>
 #include "DBAccess.h"
 #include "IndexFormula.h"
-
 /*
     Index List
         bool RSI(); // RSI
@@ -38,41 +37,32 @@ void IndexFormula::init()
     }
 }
 
-
- void GetDisparityValue()
- {
-	 //20일 이격도
-	 int DV20= db_acc.GetClose();
- }
-
-
 int IndexFormula::GetMACDValue()
 {
 
-	int short_sum, long_sum, i, j;
+	int short_sum, long_sum, cnt;
 	int short_average, long_average;
 	int macd_line;
 
 	int* short_average_arr = db_acc.GetClose(12); //단기이동평균선을 위한 12일동안의 종가
 	int* long_average_arr = db_acc.GetClose(26); //장기이동평균선을 위한 26일동안의 종가
 	
-	for(i=0; i<12; i++)
+	for(cnt = 0; cnt < 12; cnt++)
 	{
-		short_sum += short_average_arr[i];
+		short_sum += short_average_arr[cnt];
 	}
 
-	for(j=0; j<26; j++)
+	for(cnt = 0; cnt < 26; cnt++)
 	{
-		long_sum += long_average_arr[j];
+		long_sum += long_average_arr[cnt];
 	}
 
-	short_average = short_sum/12; //단기이동평균선
-	long_average = long_sum/26; //장기이동평균선
+	short_average = short_sum / 12; //단기이동평균선
+	long_average = long_sum / 26; //장기이동평균선
 
 	macd_line = short_average-long_average; //macd곡선
 
 	return macd_line;
-
 }
 
 int IndexFormula::GetRSIValue()
@@ -124,23 +114,26 @@ int IndexFormula::GetRatioValue()
         변화율 = {(오늘종가 - 12일전 종가) / 12일전 종가 } * 100
     */
 
-    int ratio;
+    float ratio;
     int t_close = db_acc.GetTodayClose();
     int p_close = db_acc.GetPrevClose(12);
 
-    ratio = ((t_close - p_close) / p_close) * 100;
-    return ratio;
+    printf("today close: %d \t prev close: %d \n", t_close, p_close);
+
+    ratio = ((t_close - p_close) / (float)p_close) * 100;
+    printf("ratio: %f \n", ratio);
+    return (int)ratio;
 }
 /* e -- hyeyeng.ahn - 2012. 04. 29 */
 
 /* s -- hyojin.kim * - 2012. 05. 01 */
 int IndexFormula::GetPivotValue()
 {
-    
     //pivot point = (전일의 고가 + 전일의 저가 + 전일의 종가) / 3
     int y_high = db_acc.GetPrevHigh(1);
     int y_low = db_acc.GetPrevLow(1);
     int y_close = db_acc.GetPrevClose(1);
+    printf("%d \t %d \t %d \t \n", y_high, y_low, y_close);
 
     int ppoint = (y_high + y_low + y_close) / 3;
 
@@ -158,11 +151,7 @@ int IndexFormula::GetPivotValue()
 
 int IndexFormula::GetTodayCloseValue()
 {
-    int tclose = 0; //오늘의 종가
-
-    tclose = db_acc.GetTodayClose();
-
-    return tclose;
+    return db_acc.GetTodayClose();
 }
 
 /*int IndexFormula::GetPivotResValue1()
@@ -277,7 +266,7 @@ int IndexFormula::GetPriceOSValue(){
         priceoscillator = ((ma(종가, 단기) - ma(종가, 장기)) / ma (종가, 단기)) * 100
         ma(단순이동평균) = (n일동안의 종가의 합)/ n일
     */
-    int pos = 0;//price oscillator
+    float pos;//price oscillator
     int mas[6]; //단기이동평균
     int mal[75]; //장기이동평균
     int ms, ml, cnt; //cnt : for loop index
@@ -288,20 +277,19 @@ int IndexFormula::GetPriceOSValue(){
 
     for(cnt = 0; cnt < 6; cnt++)
     {
-        mas[cnt] = (s_close[cnt]);
-        ps_sum += mas[cnt];
+        ps_sum += s_close[cnt];
     }
     ms = ps_sum / 6;
 
-    for(cnt = 0; cnt < 75; cnt++){
-        mal[cnt] = (l_close[cnt]);
-        pl_sum += mal[cnt];
+    for(cnt = 0; cnt < 75; cnt++)
+    {
+        pl_sum += l_close[cnt];
     }
     ml = pl_sum/ 75;
 
-    pos = ((ms - ml) / ms) * 100;
+    pos = ((ms - ml) / (float)ms) * 100;
 
-    return pos;
+    return (int)pos;
 }
 
 int IndexFormula::GetTADLineValue(){
@@ -331,7 +319,7 @@ int IndexFormula::GetPrevADLineValue(){
 	AccDist = ((((종가 - 저가) - (고가 - 저가)) / (고가 - 저가)) * 거래량) + 전일AccDist
 	*/
    
-    int prevaccdist; //전일 accdist
+    int prevaccdist = 0; //전일 accdist
     int prevclose, prevlow, prevhigh = 0; //전날의 종가, 저가, 고가
     int prevvolume; //거래량
 
@@ -340,7 +328,7 @@ int IndexFormula::GetPrevADLineValue(){
     prevhigh = db_acc.GetPrevHigh(1);
     prevvolume = db_acc.GetPrevVolume(1);
 
-    prevaccdist = ((((prevclose - prevlow) - (prevhigh - prevlow)) / (prevhigh - prevlow)) * prevvolume) + GetPrevADLineValue();
+    //prevaccdist = ((((prevclose - prevlow) - (prevhigh - prevlow)) / (prevhigh - prevlow)) * prevvolume) + GetPrevADLineValue();
     //근데 여기서 GetPrevADLineValue를 또 사용해서 그 전 날의 accdist값을 불러주어야함. 이게 가능한지 알아야함.
 
     return prevaccdist;
@@ -355,11 +343,11 @@ int IndexFormula::GetPrevADLineValue(){
 */
 int IndexFormula::GetSignalValue()
 {
-	int* macd_arr; //9일동안의 macd지수이동평균 - 9일동안의 macd값을 배열의 넣는것을 못했음~~
-	int macd_sum, i;
+	int* macd_arr = new int[9]; //9일동안의 macd지수이동평균 - 9일동안의 macd값을 배열의 넣는것을 못했음~~
+	int macd_sum = 0;
 	int signal_line;
 
-	for(i=0; i<9; i++)
+	for(int i = 0 ;  i < 9; i++)
 	{
 		macd_sum += macd_arr[i];
 	}

@@ -44,9 +44,6 @@
     <ClInclude Include="StockIndex.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Stock.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="DBAccess.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>

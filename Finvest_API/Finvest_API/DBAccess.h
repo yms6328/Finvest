@@ -33,7 +33,7 @@ class DBAccess
         double m_dVMA120;
     } Stock;
 
-    Stock gStock_memory[50];
+    Stock gStock_memory[80];
 
     /*
         MySQL Variables

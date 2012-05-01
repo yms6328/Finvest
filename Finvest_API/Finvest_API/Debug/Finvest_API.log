@@ -1,52 +1,38 @@
-﻿빌드 시작: 5/1/2012 3:36:57 PM
-     1>2 노드의 "C:\Users\김효진\Finvest\Finvest_API\Finvest_API\Finvest_API.vcxproj" 프로젝트(build 대상)입니다.
+﻿빌드 시작: 5/2/2012 1:22:19 AM
+     1>2 노드의 "C:\Users\hyeyeong\Finvest\Finvest_API\Finvest_API\Finvest_API.vcxproj" 프로젝트(build 대상)입니다.
      1>InitializeBuildStatus:
-         "Debug\Finvest_API.unsuccessfulbuild"에 연결(touching)하고 있습니다.
+         "AlwaysCreate"이(가) 지정되었기 때문에 "Debug\Finvest_API.unsuccessfulbuild"을(를) 만들고 있습니다.
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\MySQL\MySQL Server 5.5\include" /I"C:\Program Files (x86)\MySQL\MySQL Connector C++ 1.1.0\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Finvest_API.cpp IndexFormula.cpp StockIndex.cpp
-         StockIndex.cpp
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\MySQL\MySQL Server 5.5\include" /I"C:\Program Files (x86)\MySQL\MySQL Connector C++ 1.1.0\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt IndexFormula.cpp
          IndexFormula.cpp
-     1>c:\users\김효진\finvest\finvest_api\finvest_api\indexformula.cpp(226): warning C4244: '=' : 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-     1>c:\users\김효진\finvest\finvest_api\finvest_api\indexformula.cpp(317): warning C4244: '=' : 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-     1>c:\users\김효진\finvest\finvest_api\finvest_api\indexformula.cpp(310): warning C4101: 'prevaccdist' :참조되지 않은 지역 변수입니다.
-     1>c:\users\김효진\finvest\finvest_api\finvest_api\indexformula.cpp(337): warning C4244: '=' : 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-         Finvest_API.cpp
-     1>c:\users\김효진\finvest\finvest_api\finvest_api\finvest_api.cpp(17): error C2146: 구문 오류 : ';'이(가) 'db_helper' 식별자 앞에 없습니다.
-     1>c:\users\김효진\finvest\finvest_api\finvest_api\finvest_api.cpp(17): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-     1>c:\users\김효진\finvest\finvest_api\finvest_api\finvest_api.cpp(17): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-     1>c:\users\김효진\finvest\finvest_api\finvest_api\finvest_api.cpp(18): error C2146: 구문 오류 : ';'이(가) 'index_f' 식별자 앞에 없습니다.
-     1>c:\users\김효진\finvest\finvest_api\finvest_api\finvest_api.cpp(18): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-     1>c:\users\김효진\finvest\finvest_api\finvest_api\finvest_api.cpp(18): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
-     1>c:\users\김효진\finvest\finvest_api\finvest_api\finvest_api.cpp(26): error C2065: 'LINE' : 선언되지 않은 식별자입니다.
-     1>c:\users\김효진\finvest\finvest_api\finvest_api\finvest_api.cpp(31): error C2065: 'LINE' : 선언되지 않은 식별자입니다.
-     1>c:\users\김효진\finvest\finvest_api\finvest_api\finvest_api.cpp(45): error C2065: 'LINE' : 선언되지 않은 식별자입니다.
-     1>c:\users\김효진\finvest\finvest_api\finvest_api\finvest_api.cpp(68): error C2228: '.GetClose' 왼쪽에는 클래스/구조체/공용 구조체가 있어야 합니다.
-                 'int' 형식입니다.
-     1>c:\users\김효진\finvest\finvest_api\finvest_api\finvest_api.cpp(83): error C2228: '.GetPrevClose' 왼쪽에는 클래스/구조체/공용 구조체가 있어야 합니다.
-                 'int' 형식입니다.
-     1>c:\users\김효진\finvest\finvest_api\finvest_api\finvest_api.cpp(89): error C2228: '.GetOpen' 왼쪽에는 클래스/구조체/공용 구조체가 있어야 합니다.
-                 'int' 형식입니다.
-     1>c:\users\김효진\finvest\finvest_api\finvest_api\finvest_api.cpp(104): error C2228: '.GetPrevOpen' 왼쪽에는 클래스/구조체/공용 구조체가 있어야 합니다.
-                 'int' 형식입니다.
-     1>c:\users\김효진\finvest\finvest_api\finvest_api\finvest_api.cpp(110): error C2228: '.GetOpen' 왼쪽에는 클래스/구조체/공용 구조체가 있어야 합니다.
-                 'int' 형식입니다.
-     1>c:\users\김효진\finvest\finvest_api\finvest_api\finvest_api.cpp(125): error C2228: '.GetPrevHigh' 왼쪽에는 클래스/구조체/공용 구조체가 있어야 합니다.
-                 'int' 형식입니다.
-     1>c:\users\김효진\finvest\finvest_api\finvest_api\finvest_api.cpp(131): error C2228: '.GetOpen' 왼쪽에는 클래스/구조체/공용 구조체가 있어야 합니다.
-                 'int' 형식입니다.
-     1>c:\users\김효진\finvest\finvest_api\finvest_api\finvest_api.cpp(146): error C2228: '.GetPrevLow' 왼쪽에는 클래스/구조체/공용 구조체가 있어야 합니다.
-                 'int' 형식입니다.
-     1>c:\users\김효진\finvest\finvest_api\finvest_api\finvest_api.cpp(151): error C2324: 'DBHelper' : '.~' 오른쪽에 올 수 없습니다.
-     1>c:\users\김효진\finvest\finvest_api\finvest_api\finvest_api.cpp(156): error C2228: '.getSONARValue' 왼쪽에는 클래스/구조체/공용 구조체가 있어야 합니다.
-                 'int' 형식입니다.
-     1>c:\users\김효진\finvest\finvest_api\finvest_api\finvest_api.cpp(165): error C2601: 'main' : 지역 함수 정의가 잘못되었습니다.
-                 c:\users\김효진\finvest\finvest_api\finvest_api\finvest_api.cpp(162): 이 줄에 짝이 되지 않는 '{'가 들어 있습니다.
-     1>c:\users\김효진\finvest\finvest_api\finvest_api\finvest_api.cpp(172): fatal error C1075: 왼쪽 중괄호 '{'(위치: 'c:\users\김효진\finvest\finvest_api\finvest_api\finvest_api.cpp(162)')이(가) 짝이 되기 전에 파일의 끝이 나타났습니다.
-         코드를 생성하고 있습니다...
-     1>c:\users\김효진\finvest\finvest_api\finvest_api\indexformula.cpp(343): warning C4717: 'IndexFormula::GetPrevADLineValue' : 모든 제어 경로에서 재귀적입니다. 함수로 인해 런타임 스택 오버플로가 발생합니다.
-     1>c:\users\김효진\finvest\finvest_api\finvest_api\stockindex.cpp(68): warning C4700: 초기화되지 않은 'buying_flag' 지역 변수를 사용했습니다.
-     1>"C:\Users\김효진\Finvest\Finvest_API\Finvest_API\Finvest_API.vcxproj" 프로젝트를 빌드했습니다(build 대상). - 실패
+     1>c:\users\hyeyeong\finvest\finvest_api\finvest_api\indexformula.cpp(271): warning C4101: 'mal' :참조되지 않은 지역 변수입니다.
+     1>c:\users\hyeyeong\finvest\finvest_api\finvest_api\indexformula.cpp(270): warning C4101: 'mas' :참조되지 않은 지역 변수입니다.
+     1>c:\users\hyeyeong\finvest\finvest_api\finvest_api\indexformula.cpp(309): warning C4244: '=' : 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+     1>c:\users\hyeyeong\finvest\finvest_api\finvest_api\indexformula.cpp(302): warning C4101: 'prevaccdist' :참조되지 않은 지역 변수입니다.
+     1>c:\users\hyeyeong\finvest\finvest_api\finvest_api\indexformula.cpp(329): warning C4244: '=' : 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+     1>c:\users\hyeyeong\finvest\finvest_api\finvest_api\indexformula.cpp(374): warning C4244: '=' : 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+     1>c:\users\hyeyeong\finvest\finvest_api\finvest_api\indexformula.cpp(52): warning C4700: 초기화되지 않은 'short_sum' 지역 변수를 사용했습니다.
+     1>c:\users\hyeyeong\finvest\finvest_api\finvest_api\indexformula.cpp(57): warning C4700: 초기화되지 않은 'long_sum' 지역 변수를 사용했습니다.
+       ManifestResourceCompile:
+         모든 출력이 최신 상태입니다.
+       Link:
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\hyeyeong\Finvest\Finvest_API\Debug\Finvest_API.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files (x86)\MySQL\MySQL Connector C++ 1.1.0\lib" /LIBPATH:"C:\Program Files (x86)\MySQL\MySQL Server 5.5\lib\debug" libmysql.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\Finvest_API.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\hyeyeong\Finvest\Finvest_API\Debug\Finvest_API.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\hyeyeong\Finvest\Finvest_API\Debug\Finvest_API.lib" /MACHINE:X86 Debug\Finvest_API.exe.embed.manifest.res
+         Debug\DBAccess.obj
+         Debug\DBUpdate.obj
+         Debug\Finvest_API.obj
+         Debug\IndexFormula.obj
+         Debug\StockIndex.obj
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"Debug\Finvest_API.exe.embed.manifest" /manifest Debug\Finvest_API.exe.intermediate.manifest
+         모든 출력이 최신 상태입니다.
+       LinkEmbedManifest:
+         모든 출력이 최신 상태입니다.
+         Finvest_API.vcxproj -> C:\Users\hyeyeong\Finvest\Finvest_API\Debug\Finvest_API.exe
+       FinalizeBuildStatus:
+         "Debug\Finvest_API.unsuccessfulbuild" 파일을 삭제하고 있습니다.
+         "Debug\Finvest_API.lastbuildstate"에 연결(touching)하고 있습니다.
+     1>"C:\Users\hyeyeong\Finvest\Finvest_API\Finvest_API\Finvest_API.vcxproj" 프로젝트를 빌드했습니다(build 대상).
 
-빌드하지 못했습니다.
+빌드했습니다.
 
-경과 시간: 00:00:03.22
+경과 시간: 00:00:01.90
