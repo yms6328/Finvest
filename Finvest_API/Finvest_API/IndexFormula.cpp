@@ -13,16 +13,16 @@
         bool RSI(); // RSI
         bool MACD(); // MACD =======보류
         bool Stochastics(); // 스토캐스틱 ========완성
-        bool RateOfChange(); // 변화율 =========완성
-        bool PivotPoint(); // Pivot Point =========보류
+        bool RateOfChange(); // 변화율 =========완성, 결과 없음
+        bool PivotPoint(); // Pivot Point =========보류, 결과 없음
         bool SonarMomentum(); // Sonar Momentum =========보류
         bool TRIX(); // TRIX ===========보류
-        bool CCI(); // CCI ==========완성
+        bool CCI(); // CCI ==========완성, 결과나옴
         bool VR(); // VR 
         bool RCI(); // RCI
         bool Disparity(); // 이격도
-        bool NCO(); //NCO
-        bool PriceOS(); //Price Oscillator 
+        bool NCO(); //NCO, 결과나옴
+        bool PriceOS(); //Price Oscillator, 결과나옴
         bool ADLine(); //ADLine 
 */
 
@@ -37,17 +37,12 @@ void IndexFormula::init()
     }
 }
 
-<<<<<<< HEAD
-=======
-
  void GetDisparityValue()
  {
 	 //20일 이격도
 	// int DV20= db_acc.GetClose();
  }
 
-
->>>>>>> d8617164ebcc120e0f134c1ad5862fa6a125a7b3
 int IndexFormula::GetMACDValue()
 {
 
@@ -221,7 +216,7 @@ int IndexFormula::GetCCIValue()
     }
     d = d_sum / 20;
 
-    //n_cci = (M[0] - m) / (d * 0.015);
+    n_cci = (M[0] - m) / (d * 0.015);
     
     return n_cci;
 }
@@ -345,7 +340,6 @@ int IndexFormula::GetPrevADLineValue(){
     return prevaccdist;
 }
 /* e -- hyojin.kim - 2012. 05. 01 */
-
 
 
 
