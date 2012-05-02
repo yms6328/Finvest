@@ -37,8 +37,8 @@ void IndexFormula::init()
     }
 }
 
-<<<<<<< HEAD
-=======
+//<<<<<<< HEAD
+//=======
 
  void GetDisparityValue()
  {
@@ -47,7 +47,7 @@ void IndexFormula::init()
  }
 
 
->>>>>>> d8617164ebcc120e0f134c1ad5862fa6a125a7b3
+//>>>>>>> d8617164ebcc120e0f134c1ad5862fa6a125a7b3
 int IndexFormula::GetMACDValue()
 {
 
@@ -78,8 +78,33 @@ int IndexFormula::GetMACDValue()
 
 int IndexFormula::GetRSIValue()
 {
+
     //RSI = {(14ÀÏ°£ »ó½ÂÆø ÇÕ°è) / (14ÀÏ°£ »ó½ÂÆø ÇÕ°è + 14ÀÏ°£ ÇÏ¶ôÆø ÇÕ°è) } * 10
-    return 0;
+    
+    int rsi = 0;
+    int* swing_arr = db_acc.GetDiff(14);
+    int upswing[14]; //»ó½ÂÆø °ªµé ³Ö´Â ¹è¿­
+    int downswing[14]; //ÇÏ¶ôÆø °ªµé ³Ö´Â ¹è¿­
+    int upswing_sum = 0; //»ó½ÂÆø ÇÕ
+    int downswing_sum = 0; //ÇÏ¶ôÆø ÇÕ
+
+    for(int cnt = 0; cnt<14; cnt++)
+    {
+        if(swing_arr[cnt] > 0)
+        {
+            upswing[cnt] = (swing_arr[cnt]);
+            upswing_sum += upswing[cnt];
+        }
+        else if(swing_arr[cnt] < 0)
+        {
+            downswing[cnt] = (swing_arr[cnt]);
+            downswing_sum += downswing[cnt];
+        }
+    }
+
+    rsi = ((upswing_sum) / ((upswing_sum) + (downswing_sum))) * 10;
+    
+    return rsi;
 }
 
 /* s :: hyeyeong.ahn - 2012. 04. 30 */
@@ -221,7 +246,7 @@ int IndexFormula::GetCCIValue()
     }
     d = d_sum / 20;
 
-    //n_cci = (M[0] - m) / (d * 0.015);
+    n_cci = (M[0] - m) / (d * 0.015);
     
     return n_cci;
 }
