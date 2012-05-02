@@ -37,12 +37,23 @@ void IndexFormula::init()
     }
 }
 
+<<<<<<< HEAD
+=======
+//<<<<<<< HEAD
+//=======
+
+>>>>>>> b93c8da681b78f936c9cee25ba217f0bec695d5a
  void GetDisparityValue()
  {
 	 //20일 이격도
 	// int DV20= db_acc.GetClose();
  }
 
+<<<<<<< HEAD
+=======
+
+//>>>>>>> d8617164ebcc120e0f134c1ad5862fa6a125a7b3
+>>>>>>> b93c8da681b78f936c9cee25ba217f0bec695d5a
 int IndexFormula::GetMACDValue()
 {
 
@@ -73,8 +84,33 @@ int IndexFormula::GetMACDValue()
 
 int IndexFormula::GetRSIValue()
 {
+
     //RSI = {(14일간 상승폭 합계) / (14일간 상승폭 합계 + 14일간 하락폭 합계) } * 10
-    return 0;
+    
+    int rsi = 0;
+    int* swing_arr = db_acc.GetDiff(14);
+    int upswing[14]; //상승폭 값들 넣는 배열
+    int downswing[14]; //하락폭 값들 넣는 배열
+    int upswing_sum = 0; //상승폭 합
+    int downswing_sum = 0; //하락폭 합
+
+    for(int cnt = 0; cnt<14; cnt++)
+    {
+        if(swing_arr[cnt] > 0)
+        {
+            upswing[cnt] = (swing_arr[cnt]);
+            upswing_sum += upswing[cnt];
+        }
+        else if(swing_arr[cnt] < 0)
+        {
+            downswing[cnt] = (swing_arr[cnt]);
+            downswing_sum += downswing[cnt];
+        }
+    }
+
+    rsi = ((upswing_sum) / ((upswing_sum) + (downswing_sum))) * 10;
+    
+    return rsi;
 }
 
 /* s :: hyeyeong.ahn - 2012. 04. 30 */

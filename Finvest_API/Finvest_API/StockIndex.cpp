@@ -35,7 +35,18 @@ void StockIndex::init()
 
 bool StockIndex::RSI()
 {
-    return false;
+    printf("RSI value: %d \n", formula.GetRSIValue());
+    bool buying_flag = false;;
+
+    if(formula.GetRSIValue() > 30)
+    {
+	    buying_flag = true;
+    }
+    else if(formula.GetRSIValue() < 70)
+    {
+        buying_flag = false;
+    }
+    return buying_flag;
 }
 
 bool StockIndex::MACD()
@@ -57,7 +68,7 @@ bool StockIndex::RateOfChange()
 bool StockIndex::PivotPoint()
 {
     printf("Pivot \n");
-    bool buying_flag = false;;
+    bool buying_flag = false;
     printf("pivot value: %d \t", formula.GetPivotValue());
     printf("pivot value: %d \n", formula.GetTodayCloseValue());
 
